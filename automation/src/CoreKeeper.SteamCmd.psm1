@@ -83,4 +83,105 @@ function Install-CKSteamCmd {
     return $paths.SteamCmdExe
 }
 
-Export-ModuleMember -Function Get-CKSteamCmdDownloadUrl, Test-CKSteamCmdInstalled, Install-CKSteamCmd
+function New-CKSteamCmdAppUpdateArguments {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [hashtable]$Settings
+    )
+
+    return @(
+        "+force_install_dir",
+        [string]$Settings["serverInstallPath"],
+        "+login",
+        "anonymous",
+        "+app_update",
+        [string]$Settings["appId"],
+        "validate",
+        "+quit"
+    )
+}
+
+function Invoke-CKSteamCmd {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string[]]$Arguments,
+
+        [hashtable]$Settings,
+
+        [string]$OperationName = "steamcmd"
+    )
+
+    Assert-CKWindows -Operation "SteamCMD execution"
+
+    if ($null -eq $Settings) {
+        $Settings = Get-CKSettings
+    }
+
+    $paths = Get-CKPathSet -Settings $Settings
+    if (-not (Test-Path -LiteralPath $paths.SteamCmdExe -PathType Leaf)) {
+        throw "steamcmd.exe was not found: $($paths.SteamCmdExe). Run .\scripts\install-steamcmd.ps1 first."
+    }
+
+    New-CKDirectory -Path $paths.ServerInstallPath | Out-Null
+    $logRoot = Join-Path $paths.SteamCmdPath "logs"
+    New-CKDirectory -Path $logRoot | Out-Null
+
+    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $outputLog = Join-Path $logRoot "$OperationName-$timestamp.log"
+    $commandText = "`"$($paths.SteamCmdExe)`" $($Arguments -join ' ')"
+
+    Write-CKInfo "Running SteamCMD: $commandText"
+    Write-CKInfo "SteamCMD output log: $outputLog"
+
+    & $paths.SteamCmdExe @Arguments 2>&1 | Tee-Object -FilePath $outputLog
+    $exitCode = $LASTEXITCODE
+
+    if ($exitCode -ne 0) {
+        throw "SteamCMD failed with exit code $exitCode. Command: $commandText. Output log: $outputLog. SteamCMD logs: $logRoot"
+    }
+
+    return [pscustomobject]@{
+        ExitCode = $exitCode
+        Command = $commandText
+        OutputLog = $outputLog
+        SteamCmdLogs = $logRoot
+    }
+}
+
+function Invoke-CKDedicatedServerAppUpdate {
+    [CmdletBinding()]
+    param(
+        [hashtable]$Settings,
+        [string]$OperationName = "corekeeper-app-update"
+    )
+
+    if ($null -eq $Settings) {
+        $Settings = Get-CKSettings
+    }
+
+    Install-CKSteamCmd -Settings $Settings | Out-Null
+    $arguments = New-CKSteamCmdAppUpdateArguments -Settings $Settings
+    return Invoke-CKSteamCmd -Arguments $arguments -Settings $Settings -OperationName $OperationName
+}
+
+function Install-CKDedicatedServer {
+    [CmdletBinding()]
+    param(
+        [hashtable]$Settings
+    )
+
+    return Invoke-CKDedicatedServerAppUpdate -Settings $Settings -OperationName "corekeeper-install-server"
+}
+
+function Update-CKDedicatedServer {
+    [CmdletBinding()]
+    param(
+        [hashtable]$Settings
+    )
+
+    return Invoke-CKDedicatedServerAppUpdate -Settings $Settings -OperationName "corekeeper-update-server"
+}
+
+Export-ModuleMember -Function Get-CKSteamCmdDownloadUrl, Test-CKSteamCmdInstalled, Install-CKSteamCmd, New-CKSteamCmdAppUpdateArguments, Invoke-CKSteamCmd, Invoke-CKDedicatedServerAppUpdate, Install-CKDedicatedServer, Update-CKDedicatedServer

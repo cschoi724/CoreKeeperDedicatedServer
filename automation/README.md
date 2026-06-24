@@ -27,6 +27,13 @@ Test-CKRequiredPaths
 .\scripts\install-steamcmd.ps1
 ```
 
+7. Core Keeper Dedicated Server를 설치하거나 업데이트합니다.
+
+```powershell
+.\scripts\install-server.ps1
+.\scripts\update-server.ps1
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -60,6 +67,16 @@ Test-CKRequiredPaths
 5. 압축 해제 후 `steamcmd.exe` 존재 여부를 확인합니다.
 
 이 단계는 네트워크 연결이 필요합니다.
+
+## Dedicated Server 설치와 업데이트
+
+`scripts\install-server.ps1`과 `scripts\update-server.ps1`은 사용자 명령을 분리하지만 내부에서는 같은 SteamCMD 실행 흐름을 사용합니다.
+
+```text
++force_install_dir C:\CoreKeeperServer +login anonymous +app_update 1963720 validate +quit
+```
+
+실패하면 SteamCMD exit code, 실행 명령, output log 경로, SteamCMD logs 경로를 출력합니다.
 
 ## 모듈 import 검증
 

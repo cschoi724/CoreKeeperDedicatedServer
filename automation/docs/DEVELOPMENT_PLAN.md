@@ -196,6 +196,8 @@ feat: SteamCMD 자동 설치 스크립트 추가
 
 ### T3. Dedicated Server 설치/업데이트
 
+상태: 완료, Windows 실기 검증 필요
+
 목표:
 
 - SteamCMD로 Core Keeper Dedicated Server App `1963720`을 설치하고 업데이트한다.

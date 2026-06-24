@@ -8,6 +8,8 @@ Import-Module $configModule -Force
 Import-Module $pathsModule -Force
 
 $script:LaunchCandidateNames = @(
+    "Launch.bat",
+    "LaunchServer.bat",
     "StartServer.bat",
     "start-server.bat",
     "start_server.bat",

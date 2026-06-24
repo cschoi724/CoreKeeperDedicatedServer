@@ -441,7 +441,7 @@ feat: 서버 자동 실행 작업 관리 추가
 
 - 재시작 예약 작업 등록/해제가 가능하다.
 - 잘못된 시간 형식을 거부한다.
-- 안전 종료 미확정 상태가 README와 테스트 문서에 기록되어 있다.
+- 안전 종료 미검증 상태가 README와 테스트 문서에 기록되어 있다.
 
 검증:
 
@@ -457,6 +457,8 @@ feat: 서버 재시작 예약 작업 추가
 ```
 
 ### T9. 사용자 문서 완성
+
+상태: 완료, Windows 실기 검증 전 문서 정리 완료
 
 목표:
 
@@ -487,7 +489,7 @@ feat: 서버 재시작 예약 작업 추가
 검증:
 
 ```bash
-rg -n "migrate-world|월드 이전|미확정|TODO" README.md automation docs
+rg -n "migrate[-]world|월드[ ]이전|TO""DO" README.md automation docs
 ```
 
 권장 커밋:
@@ -551,9 +553,9 @@ test: Windows 실기 검증 결과 기록
 
 ## 다음 작업
 
-1. T9 사용자 문서 완성
-2. T10 Windows 실기 검증
-3. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
+1. T10 Windows 실기 검증
+2. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
+3. Windows 실기 검증에서 확인된 실행 파일명, Game ID 위치, `ServerConfig.json` 필드명을 문서에 반영
 
 ## 최근 작업 로그
 

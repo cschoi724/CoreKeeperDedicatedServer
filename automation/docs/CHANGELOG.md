@@ -17,7 +17,9 @@
 - T7 자동 실행 작업 관리 추가: `scripts/register-task.ps1`, `scripts/unregister-task.ps1`, `scripts/enable-task.ps1`, `scripts/disable-task.ps1`, `src/CoreKeeper.Tasks.psm1` 생성
 - T7 Task Scheduler 정책 추가: 현재 사용자 AtLogOn 작업, `start-server.ps1` 실행 대상, 관리자 권한 안내
 - T8 재시작 예약 작업 추가: `scripts/register-restart-task.ps1`, `scripts/unregister-restart-task.ps1` 생성
-- T8 안전 제한 추가: `HH:mm` 시간 검증, 강제 종료 없는 보수적 예약 작업, 안전 종료 미확정 문서화
+- T8 안전 제한 추가: `HH:mm` 시간 검증, 강제 종료 없는 보수적 예약 작업, 안전 종료 미검증 문서화
+- T9 사용자 문서 정리: `automation/README.md`를 현재 스크립트 이름과 Windows 사용 순서 기준으로 재작성
+- T9 테스트 문서 정리: `docs/TESTING.md`를 Windows 실기 검증 명령 순서, 미검증 항목, 현재 범위 밖 항목 중심으로 재구성
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

@@ -53,6 +53,15 @@ Test-CKRequiredPaths
 .\scripts\import-world.ps1 -WorldFile "D:\Incoming\0.world.gzip" -WorldIndex 0
 ```
 
+11. 선택 기능으로 Windows 로그인 시 서버 자동 시작 작업을 등록할 수 있습니다.
+
+```powershell
+.\scripts\register-task.ps1
+.\scripts\disable-task.ps1
+.\scripts\enable-task.ps1
+.\scripts\unregister-task.ps1
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -150,6 +159,23 @@ before-update-YYYYMMDD-HHMMSS
 
 원본 월드 파일은 삭제하지 않습니다. 단일 `.world.gzip`만으로 `worldinfos` 없이 정상 실행되는지는 Windows 실기 검증이 필요합니다.
 
+## 자동 실행 작업
+
+자동 실행은 기본값이 아니라 사용자가 선택해 등록하는 기능입니다.
+
+`scripts\register-task.ps1`은 Windows Task Scheduler에 `CoreKeeperServer` 작업을 등록합니다. 작업 대상은 현재 repo 경로의 `scripts\start-server.ps1`입니다.
+
+관리 명령:
+
+```powershell
+.\scripts\register-task.ps1
+.\scripts\disable-task.ps1
+.\scripts\enable-task.ps1
+.\scripts\unregister-task.ps1
+```
+
+현재 Windows 로그인 사용자로 실행되도록 등록하며, Direct Connect, 포트포워딩, Windows 방화벽 규칙은 설정하지 않습니다. 관리자 권한이 아닐 때도 사용자 작업 등록은 가능할 수 있지만, Windows 정책에 따라 실패하면 관리자 PowerShell로 다시 실행해야 할 수 있습니다.
+
 ## 모듈 import 검증
 
 macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows PowerShell에서 다음 명령으로 모듈 로딩만 먼저 확인합니다.
@@ -161,6 +187,7 @@ Import-Module .\src\CoreKeeper.Paths.psm1 -Force
 Import-Module .\src\CoreKeeper.Backup.psm1 -Force
 Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
 Import-Module .\src\CoreKeeper.Server.psm1 -Force
+Import-Module .\src\CoreKeeper.Tasks.psm1 -Force
 Import-Module .\src\CoreKeeper.World.psm1 -Force
 Get-CKSettings
 Test-CKRequiredPaths

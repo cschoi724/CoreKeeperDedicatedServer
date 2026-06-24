@@ -111,6 +111,29 @@ Test-Path "$env:USERPROFILE\AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServe
 - 원본 월드 파일은 삭제하지 않는다.
 - `ServerConfig.json`에 알려진 월드 인덱스 필드가 있으면 JSON 파서로 업데이트한다.
 
+### T7 자동 실행 작업 관리 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.Tasks.psm1 -Force
+Test-CKAdministrator
+.\scripts\register-task.ps1
+Get-ScheduledTask -TaskName CoreKeeperServer
+.\scripts\disable-task.ps1
+.\scripts\enable-task.ps1
+.\scripts\unregister-task.ps1
+```
+
+기대 결과:
+
+- 작업 이름은 `CoreKeeperServer`이다.
+- 작업 실행 대상은 현재 repo 경로의 `automation\scripts\start-server.ps1`이다.
+- 자동 실행은 사용자가 `register-task.ps1`을 실행할 때만 등록된다.
+- 등록/해제/활성화/비활성화가 가능하다.
+- 관리자 권한이 아니면 안내 메시지를 출력하고, Windows 정책상 실패하면 관리자 PowerShell 재실행 안내가 포함된 에러로 중단한다.
+- Direct Connect, 포트포워딩, Windows 방화벽 자동 설정은 수행하지 않는다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -162,7 +185,7 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 날짜: 2026-06-24
 - 명령: PowerShell 문법 검사
 - 결과: 로컬 macOS 환경에 `pwsh`가 없어 미실행
-- 비고: Windows PowerShell에서 T1-T6 검증 명령 실행 필요
+- 비고: Windows PowerShell에서 T1-T7 검증 명령 실행 필요
 
 ## 알려진 이슈
 
@@ -174,4 +197,6 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - `D:\Backups\CoreKeeper` 생성과 Dedicated Server 데이터 백업은 Windows 노트북에서 재확인해야 한다.
 - 단일 `.world.gzip` import가 `worldinfos` 없이 정상 실행되는지는 Windows 노트북에서 재확인해야 한다.
 - 최신 `ServerConfig.json` 월드 인덱스 필드명은 Windows 노트북에서 재확인해야 한다.
+- Task Scheduler `CoreKeeperServer` 작업 등록/해제/활성화/비활성화는 Windows 노트북에서 재확인해야 한다.
+- Task Scheduler 등록에 관리자 권한이 필요한지는 Windows 노트북 정책에서 재확인해야 한다.
 - Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

@@ -373,6 +373,8 @@ feat: 기존 월드 import 스크립트 추가
 
 ### T7. 자동 실행 온/오프
 
+상태: 완료, Windows 실기 검증 필요
+
 목표:
 
 - Windows Task Scheduler로 서버 자동 실행을 등록하고 관리한다.

@@ -16,3 +16,4 @@
 - Windows 운영 기본값과 기본 빈 월드/import 설계를 문서화
 - 자동화 개발 계획을 작업 단위별 실행 계획으로 구체화
 - Windows Codex 실기 검증 Runbook 추가
+- Dedicated Server 플레이어 0명 sleep/대기 동작과 운영 확장 후보 문서화

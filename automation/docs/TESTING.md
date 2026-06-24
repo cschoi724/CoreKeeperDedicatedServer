@@ -245,6 +245,11 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - Task Scheduler `CoreKeeperServerRestart` 작업 등록/해제가 동작하는지
 - 재시작 예약은 안전 종료 방식 확인 전까지 실제 강제 재시작을 수행하지 않음
 
+## 확인된 운영 지식
+
+- 플레이어가 0명일 때 Core Keeper Dedicated Server는 sleep 또는 대기 모드로 전환된다.
+- T10 이후 상태 조회/Watchdog 검증 시 sleep/idle 상태와 프로세스 비정상 종료를 구분해야 한다.
+
 ## 현재 범위 밖
 
 - Direct Connect 구현

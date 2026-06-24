@@ -14,6 +14,9 @@
 
 - `research/deep-research-report.md`: Core Keeper Dedicated Server 구축 리서치
 - `research/Core Keeper 전용 서버와 상시 호스팅 구축 가이드.pdf`: PDF 리서치 가이드
+- `product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md`: Dedicated Server 운영 지식과 확장 후보
+- `product/Additional Research & Design Review.txt`: 추가 리서치/설계 검토 원문
+- `product/Dedicated Server 운영 기능 추가 요구사항.txt`: 운영 기능 추가 요구사항 원문
 - `templates/CODEX_PROJECT_RULES_TEMPLATE.md`: Codex 프로젝트 운영 템플릿
 
 ## 작업 영역 문서

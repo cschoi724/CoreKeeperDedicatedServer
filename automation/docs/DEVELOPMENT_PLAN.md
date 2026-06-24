@@ -551,6 +551,16 @@ test: Windows 실기 검증 결과 기록
 - `ServerConfig.json`에서 월드 인덱스 필드명은 무엇인가?
 - 단일 `.world.gzip`만 import해도 `worldinfos` 없이 정상 실행되는가?
 
+## T10 이후 운영 확장 후보
+
+운영 확장 요구사항과 Dedicated Server sleep/대기 동작 기준은 `../../docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md`를 따른다.
+
+- T11 Dedicated Server 운영 특성 검증
+- T12 상태 조회와 서버 시작 정보 출력 개선
+- T13 자동 백업 정책
+- T14 Watchdog 자동 재시작
+- T15 Discord Webhook 알림
+
 ## 다음 작업
 
 1. T10 Windows 실기 검증

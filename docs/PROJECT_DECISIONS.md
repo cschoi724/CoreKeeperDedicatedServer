@@ -65,6 +65,13 @@
 - 결정: 자동화 스크립트가 Windows 전원 설정을 임의로 바꾸지 않는다.
 - 근거: 사용자가 절전모드 설정은 문서 안내만 원한다고 답함.
 
+### 2026-06-24: 플레이어 0명 상태의 Dedicated Server는 sleep/대기 전환
+
+- 결정: Core Keeper Dedicated Server에 아무도 접속하지 않으면 서버는 자동으로 sleep 또는 대기 모드로 전환되는 확인 사실을 운영 설계 기준으로 둔다.
+- 근거: 사용자가 해당 사실을 확인했다고 명시함.
+- 영향: Watchdog, 상태 조회, 자동 재시작 설계에서 sleep/idle 상태를 장애로 오인하지 않아야 한다.
+- 참고 문서: `docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md`
+
 ## 보류된 결정
 
 - 백업 압축/보관 정책을 기본값으로 제공할지.

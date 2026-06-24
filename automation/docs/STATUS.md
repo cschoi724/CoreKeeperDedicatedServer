@@ -20,6 +20,7 @@
 1. T10 Windows 실기 검증 진행
 2. Windows 노트북에서 T1-T9 문서 절차대로 모듈 import, SteamCMD 설치, 서버 설치/업데이트, 수동 시작/상태 확인, 백업, 월드 import, 자동 실행/재시작 예약 작업 관리를 검증
 3. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
+4. T10 이후 운영 확장 후보는 `docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md` 기준으로 검토
 
 ## 최근 작업
 
@@ -53,6 +54,11 @@
 - `CoreKeeperServerRestart` 예약 작업 등록/해제가 정상 동작하는지?
 - 안전 종료 방식 확인 후 실제 자동 재시작 작업을 어떻게 확장할지?
 - Windows 노트북의 PowerShell 버전은 5.1인지 7.x인지?
+
+## 확인된 운영 지식
+
+- Core Keeper Dedicated Server는 플레이어 0명일 때 자동으로 sleep 또는 대기 모드로 전환된다.
+- Watchdog 또는 상태 조회 확장 시 이 상태를 장애로 오인하지 않는다.
 
 ## 세션 시작 체크리스트
 

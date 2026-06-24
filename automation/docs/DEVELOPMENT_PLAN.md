@@ -14,7 +14,7 @@
 automation/
 ├── README.md
 ├── config/
-│   └── server.example.json
+│   └── settings.example.json
 ├── scripts/
 │   ├── install-steamcmd.ps1
 │   ├── install-server.ps1
@@ -24,6 +24,7 @@ automation/
 │   ├── register-task.ps1
 │   └── start-server.ps1
 └── docs/
+    └── WORLD_MIGRATION_DESIGN.md
 ```
 
 ## 이정표
@@ -33,7 +34,9 @@ automation/
 - [x] 루트 운영 문서 생성
 - [x] 작업 영역 문서 생성
 - [x] Git 저장소 초기화/원격 연결 방식 확정
-- [ ] 원격 저장소 push 완료 확인
+- [x] 원격 저장소 push 완료 확인
+- [x] Steam 전용 SDR(Game ID) 운영 방향 확정
+- [x] 기존 Steam 계정 월드 이전 설계 작성
 
 ### M1. Windows 자동화 설계
 
@@ -41,6 +44,7 @@ automation/
 - [ ] 설치/업데이트/백업/월드 이전 명령 경계 정의
 - [ ] 설정 파일 템플릿 형식 정의
 - [ ] 위험 작업 확인 절차 정의
+- [ ] Steam 전용 SDR(Game ID) 기준 서버 시작 흐름 정의
 
 ### M2. 설치/업데이트 자동화 구현
 
@@ -51,7 +55,8 @@ automation/
 
 ### M3. 월드 이전/백업 자동화 구현
 
-- [ ] 기존 Steam 월드 경로 입력/탐지 방식 작성
+- [ ] 사용자 Steam 계정 월드 경로 탐지 방식 작성
+- [ ] Steam 계정 폴더와 월드 인덱스 선택 UI 작성
 - [ ] Dedicated Server 월드 경로 백업
 - [ ] 월드 파일 복사와 인덱스 일치 검증
 - [ ] 복구 절차 문서화
@@ -59,9 +64,9 @@ automation/
 ### M4. Windows 운영 자동화
 
 - [ ] Task Scheduler 자동 시작 등록
-- [ ] Direct Connect 선택 시 Windows 방화벽 규칙 생성
 - [ ] 로그/상태 확인 명령 작성
 - [ ] 제거/비활성화 절차 작성
+- [ ] Direct Connect는 추후 선택 기능으로 별도 계획
 
 ### M5. Windows 실기 검증
 
@@ -69,15 +74,17 @@ automation/
 - [ ] 서버 첫 실행과 Game ID 확인
 - [ ] 기존 월드 이전 검증
 - [ ] 재부팅 후 자동 시작 검증
+- [ ] 집 Windows 노트북의 새 Codex 세션에서 검증 기록 작성
 
 ## 다음 작업
 
-1. 원격 저장소 push 완료 여부를 확인한다.
-2. 열린 질문을 사용자와 정리한다.
-3. Windows 자동화 템플릿 파일 구조를 확정한다.
-4. 구현 세션에서 PowerShell 스크립트를 작성한다.
+1. 설치 경로와 백업 경로 기본값을 확정한다.
+2. Windows 자동화 템플릿 파일 구조를 확정한다.
+3. SteamCMD 설치/확인 스크립트부터 구현한다.
+4. 월드 이전 스크립트는 `WORLD_MIGRATION_DESIGN.md` 기준으로 구현한다.
 
 ## 최근 작업 로그
 
 - 2026-06-24: 루트 관리 세션에서 개발 계획 초안을 작성함.
 - 2026-06-24: Git 저장소 초기화와 원격 저장소 정보를 반영함.
+- 2026-06-24: Steam 전용 접속 결정과 기존 월드 이전 설계를 반영함.

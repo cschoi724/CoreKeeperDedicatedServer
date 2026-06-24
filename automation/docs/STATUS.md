@@ -5,18 +5,21 @@
 - 상태: 문서 기반 준비 완료, 구현 전
 - 개발 환경: macOS에서 문서 작성, 실제 실행 대상은 Windows 노트북
 - 검증 명령: 문서 파일 목록 확인, `git status -sb`
+- 접속 방식: Steam 전용 SDR(Game ID)
+- 기존 월드: 사용자 Steam 계정의 Core Keeper 월드에서 이전 예정
 
 ## 다음 작업
 
-1. 원격 저장소 push 완료 여부 확인
-2. Windows 노트북 운영 세부값 확정
-3. PowerShell 템플릿 구조 확정
-4. 설치/업데이트 스크립트부터 구현
+1. 설치 경로와 백업 경로 기본값 확정
+2. PowerShell 템플릿 구조 확정
+3. 설치/업데이트 스크립트부터 구현
+4. `WORLD_MIGRATION_DESIGN.md` 기준으로 월드 이전 스크립트 구현
 
 ## 최근 작업
 
 - 2026-06-24: `automation/` 작업 영역 문서 생성
 - 2026-06-24: Git 저장소 초기화 상태를 문서에 반영
+- 2026-06-24: Steam 전용 접속과 기존 Steam 계정 월드 이전 방향을 반영
 
 ## 열린 질문
 
@@ -25,7 +28,6 @@
 - 서버 설치 기본 경로는 `C:\CoreKeeperServer`로 둘지?
 - 백업 기본 경로는 `D:\Backups\CoreKeeper`로 둘지, 사용자 입력으로 받을지?
 - 서버 자동 시작 작업 이름은 `CoreKeeperServer`로 둘지?
-- Direct Connect를 기본 비활성화로 둘지?
 
 ## 세션 시작 체크리스트
 

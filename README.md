@@ -20,6 +20,8 @@
 - 세션 인수인계: `docs/SESSION_HANDOFF.md`
 - 자동화 작업 영역: `automation/agents.md`
 - 개발 계획: `automation/docs/DEVELOPMENT_PLAN.md`
+- 운영 옵션 설명: `docs/product/OPERATING_OPTIONS.md`
+- 기존 월드 이전 설계: `automation/docs/WORLD_MIGRATION_DESIGN.md`
 - 리서치 문서: `deep-research-report.md`
 
 ## 다음 단계
@@ -30,7 +32,7 @@
 
 ## 주요 열린 질문
 
-- SDR(Game ID)만 지원하면 되는지, Direct Connect도 필요한지?
+- 결정: 현재는 Steam 접속만 사용하므로 SDR(Game ID)를 기본으로 한다.
 - SteamCMD를 템플릿이 직접 설치할지, 사용자가 미리 설치할지?
 - 기존 월드 파일 위치와 월드 인덱스는 무엇인지?
 - 백업 보관 위치와 보존 정책은 어떻게 할지?

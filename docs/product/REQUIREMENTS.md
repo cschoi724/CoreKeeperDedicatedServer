@@ -20,7 +20,7 @@
 2. 사용자가 README 또는 자동화 스크립트 안내에 따라 서버 설치를 실행한다.
 3. 템플릿이 SteamCMD 기반으로 Core Keeper Dedicated Server를 설치 또는 업데이트한다.
 4. 사용자가 기존 Steam 월드 파일을 Dedicated Server 월드 경로로 이전한다.
-5. 서버가 SDR(Game ID) 또는 선택적으로 Direct Connect 방식으로 실행된다.
+5. 서버가 Steam 전용 SDR(Game ID) 방식으로 실행된다.
 6. 친구들은 사용자가 게임에 접속하지 않아도 서버에 접속한다.
 7. 서버는 재부팅 후 자동 시작되며, 월드는 정기적으로 백업된다.
 
@@ -33,6 +33,9 @@
 - 백업/복구 절차
 - Task Scheduler 기반 자동 시작
 - SDR(Game ID) 기본 운영
+
+### 추후 후보
+
 - Direct Connect 선택 운영
 - Windows 방화벽 규칙 선택 생성
 
@@ -52,9 +55,8 @@
 
 ## 열린 질문
 
-- 친구들이 모두 Steam 사용자인가?
-- Direct Connect가 꼭 필요한가?
+- 친구들은 Steam으로만 접속한다.
+- Direct Connect는 현재 필요하지 않다.
 - Windows 노트북은 절전모드가 비활성화되어 있는가?
 - 서버를 실행할 Windows 계정은 항상 로그인 상태인가?
 - 서버 프로세스를 콘솔 창으로 유지할지, 예약 작업으로 백그라운드 실행할지?
-

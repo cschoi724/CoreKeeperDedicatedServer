@@ -17,9 +17,9 @@
 - 결정: macOS에서는 문서와 템플릿 작성만 수행하고, 실제 설치/실행 검증은 Windows 노트북에서 진행한다.
 - 근거: 사용자 상황에서 실제 서버 실행 환경이 집의 Windows 노트북이라고 명시됨.
 
-### 2026-06-24: 기본 운영 후보는 SteamCMD + SDR(Game ID)
+### 2026-06-24: 기본 운영 방식은 SteamCMD + SDR(Game ID)
 
-- 결정: 구현 기본값 후보는 SteamCMD 기반 설치/업데이트와 SDR(Game ID) 접속 방식이다.
+- 결정: 구현 기본값은 SteamCMD 기반 설치/업데이트와 SDR(Game ID) 접속 방식이다.
 - 근거: `deep-research-report.md`가 Windows 운영에서 SteamCMD 기반 별도 서버 폴더를 실무적으로 편하다고 정리했고, Steam-only 비공개 서버에는 SDR이 가장 단순하고 안전하다고 정리함.
 - 상태: 구현 전 최신 실행 인자와 실제 Windows 동작 확인 필요.
 
@@ -28,9 +28,25 @@
 - 결정: 로컬 Git 저장소를 `main` 브랜치로 초기화하고, 원격 저장소는 `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`를 사용한다.
 - 근거: 사용자가 로컬 저장소 추가와 해당 원격 저장소 push를 요청함.
 
+### 2026-06-24: 접속 방식은 Steam 전용 SDR(Game ID)
+
+- 결정: 친구 접속은 Steam에서만 하는 것으로 보고 SDR(Game ID)를 기본 방식으로 확정한다.
+- 근거: 사용자가 Steam에서만 접속한다고 명시함.
+- 영향: Direct Connect, 공유기 포트포워딩, Windows 방화벽 UDP 포트 개방은 현재 구현 우선순위에서 제외한다.
+
+### 2026-06-24: 기존 월드는 사용자 Steam 계정 월드에서 이전
+
+- 결정: 기존 플레이 월드는 사용자 Steam 계정의 Core Keeper 클라이언트 저장 경로에서 Dedicated Server 저장 경로로 이전하는 흐름을 설계한다.
+- 근거: 사용자가 기존 월드가 본인 Steam 계정에 속해 있다고 설명함.
+- 영향: 구현 시 Steam 계정 폴더와 월드 인덱스를 안전하게 선택하는 절차가 필요하다.
+
+### 2026-06-24: Windows 실기 검증은 집 Windows 노트북의 새 Codex 세션에서 진행
+
+- 결정: macOS 현재 세션에서는 서버 실행 검증을 하지 않고, 집 Windows 노트북에서 clone 후 새 Codex 세션으로 테스트한다.
+- 근거: 실제 실행 환경이 Windows 노트북이며, 사용자가 해당 환경에서 테스트 진행이 필요하다고 판단함.
+
 ## 보류된 결정
 
-- Direct Connect 지원을 기본 포함할지 선택 옵션으로 둘지.
 - Windows Task Scheduler 등록을 자동화할지 수동 안내로 둘지.
 - 기존 월드 이전을 자동 탐지할지, 명시 경로 입력 방식으로 둘지.
 - 백업 압축/보관 정책을 기본값으로 제공할지.

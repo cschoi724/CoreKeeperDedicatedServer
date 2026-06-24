@@ -27,7 +27,7 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 기존 월드 이전 후 올바른 월드가 열리는지
 - Game ID가 확인 가능한지
 - Task Scheduler 등록 후 재부팅 자동 시작이 동작하는지
-- Direct Connect 선택 시에만 방화벽 규칙을 생성하는지
+- Steam 전용 SDR(Game ID) 접속 흐름이 문서와 일치하는지
 
 ## 검증 기록
 
@@ -40,4 +40,4 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 
 - macOS에서는 Windows PowerShell/Task Scheduler/SteamCMD 실행 검증을 하지 않는다.
 - Core Keeper Dedicated Server 최신 실행 인자는 구현 전 Windows에서 재확인해야 한다.
-
+- Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

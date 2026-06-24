@@ -33,8 +33,8 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 
 - Windows PowerShell을 기본 자동화 언어 후보로 둔다.
 - 서버 설치는 SteamCMD + App ID `1963720` 후보를 우선 검토한다.
-- 기본 접속 방식은 SDR(Game ID) 후보를 우선 검토한다.
-- Direct Connect, 방화벽, 포트포워딩은 선택 기능으로 분리한다.
+- 기본 접속 방식은 SDR(Game ID)로 둔다.
+- Direct Connect, 방화벽, 포트포워딩은 현재 구현 범위에서 제외하고 추후 선택 기능 후보로만 남긴다.
 - 사용자 월드 파일을 덮어쓰기 전 반드시 백업과 확인 단계를 둔다.
 - 실제 서버 실행은 Windows 환경에서만 검증한다.
 - 작업 영역 외부 파일을 수정해야 하면 이유를 문서에 남긴다.
@@ -47,4 +47,3 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 - 기존 월드 저장 경로와 Dedicated Server 저장 경로
 - Game ID 확인 방식
 - Task Scheduler 등록 권한 요구사항
-

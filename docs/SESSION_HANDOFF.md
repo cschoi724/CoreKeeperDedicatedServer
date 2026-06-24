@@ -8,10 +8,13 @@
 - 로컬 Git 저장소 초기화
 - 원격 저장소 후보 반영: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`
 - 서버 런타임 데이터와 비밀 설정을 제외하기 위한 `.gitignore` 추가
+- Steam 전용 SDR(Game ID) 운영으로 방향 확정
+- 기존 Steam 계정 월드를 Dedicated Server로 이전하는 설계 문서 추가
 
 ## 커밋
 
-- 예정 커밋 메시지: `docs: 프로젝트 운영 문서 추가`
+- 완료 커밋: `ac5e94c docs: 프로젝트 운영 문서 추가`
+- 다음 문서 커밋 후보: `docs: 서버 운영 방향과 월드 이전 설계 보완`
 
 ## 검증
 
@@ -29,9 +32,9 @@
 
 ## 남은 작업
 
-1. 원격 저장소 push 완료 여부 확인
+1. 현재 문서 변경사항 커밋/push
 2. Windows 노트북에서 clone 후 개발 세션 시작
-3. 열린 질문 정리
+3. 설치 경로와 백업 경로 확정
 4. PowerShell 자동화 템플릿 구현
 
 ## 다음 개발 에이전트 지시
@@ -60,12 +63,12 @@
 - 기존 월드 이전
 - 백업
 - Task Scheduler 등록
-- Direct Connect 선택 설정
+- Direct Connect는 현재 제외, 추후 선택 기능 후보로만 유지
 
 핵심 요구:
 
-- SDR(Game ID)를 기본 후보로 둔다.
-- Direct Connect는 선택 기능으로 분리한다.
+- SDR(Game ID)를 기본 방식으로 둔다.
+- Steam 접속만 지원하는 현재 범위에서는 Direct Connect를 구현하지 않는다.
 - 월드 파일을 덮어쓰기 전 백업을 강제한다.
 - Windows에서만 실행 검증한다.
 
@@ -93,4 +96,3 @@
 권장 커밋 메시지:
 
 - `feat: Windows 서버 자동화 템플릿 추가`
-

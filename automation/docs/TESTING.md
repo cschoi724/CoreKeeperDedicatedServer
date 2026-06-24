@@ -52,6 +52,26 @@ Test-Path C:\CoreKeeperServer
 - 반복 실행해도 `app_update 1963720 validate`로 설치/업데이트를 재수행한다.
 - 실패 시 SteamCMD exit code, 실행 명령, output log, SteamCMD logs 경로를 출력한다.
 
+### T4 수동 서버 시작/상태/중지 안내 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.Server.psm1 -Force
+Get-CKServerLaunchCandidates
+Get-CKServerStatus
+.\scripts\start-server.ps1
+.\scripts\status-server.ps1
+.\scripts\stop-server.ps1
+```
+
+기대 결과:
+
+- `start-server.ps1`은 설치 폴더에서 서버 실행 파일/배치 파일 후보를 자동 탐색한다.
+- 실행 후보를 찾으면 수동 서버 시작을 시도하고, Game ID는 서버 콘솔 또는 로그에서 확인하라고 안내한다.
+- `status-server.ps1`은 설치 폴더, Dedicated Server 데이터 폴더, `worlds`, `ServerConfig.json`, 실행 프로세스, Game ID 로그 힌트를 출력한다.
+- `stop-server.ps1`은 안전 종료 방식이 Windows에서 확인되기 전까지 강제 종료하지 않고 수동 종료 안내만 출력한다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -97,17 +117,19 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 
 - 날짜: 2026-06-24
 - 명령: `git diff --cached --check`
-- 결과: T3 스테이징 전 공백 오류 확인 예정
-- 비고: 최종 커밋 전 실행 필요
+- 결과: T3/T4 스테이징 기준 공백 오류 없음
+- 비고: 커밋 전 확인 완료
 
 - 날짜: 2026-06-24
 - 명령: PowerShell 문법 검사
 - 결과: 로컬 macOS 환경에 `pwsh`가 없어 미실행
-- 비고: Windows PowerShell에서 T1-T3 검증 명령 실행 필요
+- 비고: Windows PowerShell에서 T1-T4 검증 명령 실행 필요
 
 ## 알려진 이슈
 
 - macOS에서는 Windows PowerShell/Task Scheduler/SteamCMD 실행 검증을 하지 않는다.
 - Core Keeper Dedicated Server 최신 실행 인자는 구현 전 Windows에서 재확인해야 한다.
 - SteamCMD anonymous `app_update 1963720 validate` 성공 여부는 Windows 노트북에서 재확인해야 한다.
+- Core Keeper Dedicated Server 최신 Windows 실행 파일명/배치 파일명은 Windows 노트북에서 재확인해야 한다.
+- 안전한 서버 종료 방식은 Windows 노트북에서 재확인해야 한다.
 - Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

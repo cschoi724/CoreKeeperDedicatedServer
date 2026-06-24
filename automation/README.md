@@ -34,6 +34,13 @@ Test-CKRequiredPaths
 .\scripts\update-server.ps1
 ```
 
+8. 서버를 수동으로 시작하고 상태를 확인합니다.
+
+```powershell
+.\scripts\start-server.ps1
+.\scripts\status-server.ps1
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -78,6 +85,20 @@ Test-CKRequiredPaths
 
 실패하면 SteamCMD exit code, 실행 명령, output log 경로, SteamCMD logs 경로를 출력합니다.
 
+## 수동 서버 시작과 상태 확인
+
+`scripts\start-server.ps1`은 `C:\CoreKeeperServer` 아래에서 서버 실행 파일 또는 배치 파일 후보를 자동 탐색해 시작합니다. 최신 실행 파일명은 Windows 실기 검증에서 재확인해야 합니다.
+
+`scripts\status-server.ps1`은 다음 정보를 출력합니다.
+
+- 서버 설치 폴더 존재 여부
+- Dedicated Server 데이터 폴더 존재 여부
+- `worlds` 폴더와 `ServerConfig.json` 존재 여부
+- 실행 중인 후보 프로세스
+- 최근 로그에서 찾은 Game ID 힌트
+
+`scripts\stop-server.ps1`은 안전 종료 방식이 확인되기 전까지 서버를 강제 종료하지 않습니다. 서버 콘솔 또는 공식 종료 방식으로 직접 종료한 뒤 `status-server.ps1`로 상태를 다시 확인합니다.
+
 ## 모듈 import 검증
 
 macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows PowerShell에서 다음 명령으로 모듈 로딩만 먼저 확인합니다.
@@ -87,6 +108,7 @@ Import-Module .\src\CoreKeeper.Common.psm1 -Force
 Import-Module .\src\CoreKeeper.Config.psm1 -Force
 Import-Module .\src\CoreKeeper.Paths.psm1 -Force
 Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
+Import-Module .\src\CoreKeeper.Server.psm1 -Force
 Get-CKSettings
 Test-CKRequiredPaths
 ```

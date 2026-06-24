@@ -1,23 +1,19 @@
 # 세션 인수인계
 
-## 완료한 작업
+## 현재 운영 방식
 
-- Codex 운영 문서 구조 생성
-- `automation/` 작업 영역 문서 생성
-- 제품 요구사항 초안 작성
-- 로컬 Git 저장소 초기화
-- 원격 저장소 후보 반영: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`
-- 서버 런타임 데이터와 비밀 설정을 제외하기 위한 `.gitignore` 추가
-- Steam 전용 SDR(Game ID) 운영으로 방향 확정
-- 기본 빈 월드와 선택적 기존 월드 import 방향으로 설계 변경
-- 설치 경로, 백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작 결정 반영
-- 루트의 리서치/템플릿 문서를 `docs/` 하위로 정리
-- `automation/docs/DEVELOPMENT_PLAN.md`를 T1-T10 실행 계획으로 구체화
+- 개발 진행 기준은 `automation/docs/DEVELOPMENT_PLAN.md`입니다.
+- 현재 상태와 다음 작업은 `automation/docs/STATUS.md`를 봅니다.
+- 검증 명령과 미검증 항목은 `automation/docs/TESTING.md`를 봅니다.
+- 작업 기록은 `automation/docs/CHANGELOG.md`를 봅니다.
+- 개발 에이전트에게는 긴 요구사항을 반복하지 않고, 기준 문서와 진행할 T번호만 전달합니다.
 
-## 커밋
+## 현재 구현 상태
 
-- 완료 커밋: `ac5e94c docs: 프로젝트 운영 문서 추가`
-- 다음 문서 커밋 후보: `docs: 자동화 개발 계획 구체화`
+- T1-T8 구현 완료
+- T9 사용자 문서 완성 예정
+- T10 Windows 실기 검증 예정
+- macOS에서는 Windows PowerShell, SteamCMD, Task Scheduler, Core Keeper 서버 실행 검증을 하지 않습니다.
 
 ## 검증
 
@@ -35,73 +31,27 @@
 
 ## 남은 작업
 
-1. 현재 문서 변경사항 커밋/push
-2. Windows 노트북에서 clone 후 개발 세션 시작
-3. `automation/docs/DEVELOPMENT_PLAN.md`의 T1부터 순서대로 구현
-4. Windows 노트북에서 T10 실기 검증
+1. `automation/docs/DEVELOPMENT_PLAN.md`의 T9 진행
+2. T9 완료 후 Windows 노트북에서 T10 실기 검증 진행
+3. T10 결과를 `automation/docs/TESTING.md`, `automation/docs/STATUS.md`에 기록
 
-## 다음 개발 에이전트 지시
+## 다음 개발 에이전트 지시 템플릿
 
-작업 위치:
+```text
+문서를 기준으로 진행해줘.
 
-- `automation/`
+먼저 읽을 문서:
+- agents.md
+- automation/agents.md
+- automation/docs/DEVELOPMENT_PLAN.md
+- automation/docs/STATUS.md
+- automation/docs/TESTING.md
 
-현재 기준:
+이번 목표:
+- DEVELOPMENT_PLAN.md의 T{번호} 진행
 
-- 루트 `agents.md`
-- `automation/agents.md`
-- `docs/research/deep-research-report.md`
-- `docs/PROJECT_DECISIONS.md`
-- `automation/docs/DEVELOPMENT_PLAN.md`
-
-이번 작업 목표:
-
-- `automation/docs/DEVELOPMENT_PLAN.md`의 T1 자동화 골격 생성부터 시작해 Windows 노트북에서 실행 가능한 Core Keeper Dedicated Server 자동화 템플릿 구현
-
-구현 대상:
-
-- SteamCMD 설치/확인
-- Core Keeper Dedicated Server 설치/업데이트
-- 서버 시작
-- 기존 월드 import
-- 백업
-- Task Scheduler 자동 실행 등록/해제/활성화/비활성화
-- 특정 시간 서버 재시작 예약
-- Direct Connect는 현재 제외, 추후 선택 기능 후보로만 유지
-
-핵심 요구:
-
-- SDR(Game ID)를 기본 방식으로 둔다.
-- Steam 접속만 지원하는 현재 범위에서는 Direct Connect를 구현하지 않는다.
-- 기본은 새 빈 월드다.
-- 기존 월드 import 시 월드 파일을 덮어쓰기 전 백업을 강제한다.
-- 서버는 기본 수동 실행이다.
-- 자동 실행과 특정 시간 재시작은 선택 기능이다.
-- Windows에서만 실행 검증한다.
-
-테스트:
-
-- PowerShell 문법 검사
-- Windows 실기 검증
-- 문서 절차 재현성 검증
-
-검증:
-
-- 설치 성공 여부
-- 서버 첫 실행 여부
-- Game ID 확인 여부
-- 기본 빈 월드 생성 여부
-- 기존 월드 import 여부
-- 재부팅 후 자동 시작 여부
-- 특정 시간 재시작 예약 여부
-
-문서 업데이트:
-
-- `automation/docs/STATUS.md`
-- `automation/docs/TESTING.md`
-- `automation/docs/CHANGELOG.md`
-- `automation/docs/DECISIONS.md`
-
-권장 커밋 메시지:
-
-- `feat: Windows 서버 자동화 템플릿 추가`
+완료 후:
+- STATUS.md, TESTING.md, CHANGELOG.md 갱신
+- 작업 단위 커밋
+- git status -sb 공유
+```

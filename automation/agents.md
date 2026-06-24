@@ -29,6 +29,13 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 - 작업 영역 상태: `docs/STATUS.md`
 - 테스트 기준: `docs/TESTING.md`
 
+## 작업 지시 수신 원칙
+
+- 사용자나 루트 관리 에이전트의 지시는 문서 참조 중심의 짧은 지시일 수 있습니다.
+- 구현 상세는 `docs/DEVELOPMENT_PLAN.md`의 해당 T번호 작업 단위를 우선 따릅니다.
+- 상태와 검증 기록은 `docs/STATUS.md`, `docs/TESTING.md`, `docs/CHANGELOG.md`에 남깁니다.
+- 지시와 문서가 충돌하면 최신 사용자 지시를 우선하고, 충돌 내용을 문서에 반영합니다.
+
 ## 개발 원칙
 
 - Windows PowerShell을 기본 자동화 언어 후보로 둔다.

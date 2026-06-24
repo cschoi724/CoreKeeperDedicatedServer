@@ -134,6 +134,33 @@ Get-ScheduledTask -TaskName CoreKeeperServer
 - 관리자 권한이 아니면 안내 메시지를 출력하고, Windows 정책상 실패하면 관리자 PowerShell 재실행 안내가 포함된 에러로 중단한다.
 - Direct Connect, 포트포워딩, Windows 방화벽 자동 설정은 수행하지 않는다.
 
+### T8 재시작 예약 작업 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.Tasks.psm1 -Force
+Assert-CKRestartTime -Time "05:00"
+.\scripts\register-restart-task.ps1 -Time "05:00"
+Get-ScheduledTask -TaskName CoreKeeperServerRestart
+.\scripts\unregister-restart-task.ps1
+```
+
+잘못된 시간 형식 거부 확인:
+
+```powershell
+.\scripts\register-restart-task.ps1 -Time "5:00"
+.\scripts\register-restart-task.ps1 -Time "24:00"
+```
+
+기대 결과:
+
+- 작업 이름은 `CoreKeeperServerRestart`이다.
+- 시간 입력은 `HH:mm` 24시간 형식만 허용한다.
+- 기본 추천 시간은 없고 사용자가 `-Time`으로 명시해야 한다.
+- 안전 종료 방식이 Windows에서 확인되기 전까지 강제 종료 기반 재시작을 등록하지 않는다.
+- 현재 구현은 지정 시간에 `stop-server.ps1` 안전 종료 안내를 실행하는 보수적 예약 작업이다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -179,13 +206,13 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 
 - 날짜: 2026-06-24
 - 명령: `git diff --cached --check`
-- 결과: T3-T6 스테이징 기준 공백 오류 없음
+- 결과: T3-T8 스테이징 기준 공백 오류 없음
 - 비고: 커밋 전 확인 완료
 
 - 날짜: 2026-06-24
 - 명령: PowerShell 문법 검사
 - 결과: 로컬 macOS 환경에 `pwsh`가 없어 미실행
-- 비고: Windows PowerShell에서 T1-T7 검증 명령 실행 필요
+- 비고: Windows PowerShell에서 T1-T8 검증 명령 실행 필요
 
 ## 알려진 이슈
 
@@ -199,4 +226,6 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 최신 `ServerConfig.json` 월드 인덱스 필드명은 Windows 노트북에서 재확인해야 한다.
 - Task Scheduler `CoreKeeperServer` 작업 등록/해제/활성화/비활성화는 Windows 노트북에서 재확인해야 한다.
 - Task Scheduler 등록에 관리자 권한이 필요한지는 Windows 노트북 정책에서 재확인해야 한다.
+- Task Scheduler `CoreKeeperServerRestart` 작업 등록/해제는 Windows 노트북에서 재확인해야 한다.
+- 재시작 예약은 안전 종료 방식 확인 전까지 실제 강제 재시작을 수행하지 않는다.
 - Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

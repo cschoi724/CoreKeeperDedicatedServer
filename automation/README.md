@@ -62,6 +62,13 @@ Test-CKRequiredPaths
 .\scripts\unregister-task.ps1
 ```
 
+12. 선택 기능으로 특정 시간 재시작 예약 작업을 등록할 수 있습니다.
+
+```powershell
+.\scripts\register-restart-task.ps1 -Time "05:00"
+.\scripts\unregister-restart-task.ps1
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -175,6 +182,19 @@ before-update-YYYYMMDD-HHMMSS
 ```
 
 현재 Windows 로그인 사용자로 실행되도록 등록하며, Direct Connect, 포트포워딩, Windows 방화벽 규칙은 설정하지 않습니다. 관리자 권한이 아닐 때도 사용자 작업 등록은 가능할 수 있지만, Windows 정책에 따라 실패하면 관리자 PowerShell로 다시 실행해야 할 수 있습니다.
+
+## 재시작 예약 작업
+
+`scripts\register-restart-task.ps1`은 Windows Task Scheduler에 `CoreKeeperServerRestart` 작업을 등록합니다.
+
+```powershell
+.\scripts\register-restart-task.ps1 -Time "05:00"
+.\scripts\unregister-restart-task.ps1
+```
+
+시간은 `HH:mm` 24시간 형식만 허용합니다. 예: `05:00`, `23:30`
+
+Core Keeper Dedicated Server의 안전한 종료 방식이 아직 Windows에서 검증되지 않았으므로, 이 작업은 서버를 강제 종료하거나 자동 재시작하지 않습니다. 현재 구현은 지정 시간에 `scripts\stop-server.ps1`을 실행해 안전 종료 미확정 안내를 남기는 보수적 예약 작업입니다. 실제 자동 재시작은 Windows 실기 검증에서 안전 종료 방식이 확인된 뒤 확장합니다.
 
 ## 모듈 import 검증
 

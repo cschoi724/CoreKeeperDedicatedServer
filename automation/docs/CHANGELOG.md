@@ -16,6 +16,8 @@
 - T6 import 안전 정책 추가: 단일 `.world.gzip` 검증, import 전 백업 강제, 기존 대상 덮어쓰기 명시 확인, 원본 파일 보존
 - T7 자동 실행 작업 관리 추가: `scripts/register-task.ps1`, `scripts/unregister-task.ps1`, `scripts/enable-task.ps1`, `scripts/disable-task.ps1`, `src/CoreKeeper.Tasks.psm1` 생성
 - T7 Task Scheduler 정책 추가: 현재 사용자 AtLogOn 작업, `start-server.ps1` 실행 대상, 관리자 권한 안내
+- T8 재시작 예약 작업 추가: `scripts/register-restart-task.ps1`, `scripts/unregister-restart-task.ps1` 생성
+- T8 안전 제한 추가: `HH:mm` 시간 검증, 강제 종료 없는 보수적 예약 작업, 안전 종료 미확정 문서화
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

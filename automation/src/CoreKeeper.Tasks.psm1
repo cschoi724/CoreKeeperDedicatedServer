@@ -206,4 +206,71 @@ function Disable-CKServerStartupTask {
     return Disable-CKTaskByName -TaskName ([string]$Settings["taskName"])
 }
 
-Export-ModuleMember -Function Test-CKAdministrator, Get-CKCurrentUserId, Get-CKScriptPath, New-CKPowerShellTaskAction, Write-CKTaskPermissionHint, Register-CKServerStartupTask, Unregister-CKTaskByName, Enable-CKTaskByName, Disable-CKTaskByName, Unregister-CKServerStartupTask, Enable-CKServerStartupTask, Disable-CKServerStartupTask
+function Assert-CKRestartTime {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Time
+    )
+
+    if ($Time -notmatch "^([01][0-9]|2[0-3]):[0-5][0-9]$") {
+        throw "Restart time must use HH:mm 24-hour format, for example 05:00."
+    }
+}
+
+function Register-CKRestartTask {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Time,
+
+        [hashtable]$Settings
+    )
+
+    Assert-CKWindows -Operation "Restart task registration"
+    Assert-CKRestartTime -Time $Time
+
+    if ($null -eq $Settings) {
+        $Settings = Get-CKSettings
+    }
+
+    Write-CKTaskPermissionHint
+    Write-CKWarn "Safe Core Keeper Dedicated Server shutdown is not verified yet. This task does not force-stop or automatically restart the server."
+
+    $taskName = [string]$Settings["restartTaskName"]
+    $userId = Get-CKCurrentUserId
+    $scriptPath = Get-CKScriptPath -ScriptName "stop-server.ps1"
+    $action = New-CKPowerShellTaskAction -ScriptPath $scriptPath
+    $triggerTime = [datetime]::ParseExact($Time, "HH:mm", [System.Globalization.CultureInfo]::InvariantCulture)
+    $trigger = New-ScheduledTaskTrigger -Daily -At $triggerTime
+    $principal = New-ScheduledTaskPrincipal -UserId $userId -LogonType Interactive -RunLevel LeastPrivilege
+    $settingsSet = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit ([TimeSpan]::Zero)
+    $description = "Placeholder Core Keeper restart reminder at $Time. Safe shutdown is not verified; action runs $scriptPath only."
+
+    try {
+        Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Settings $settingsSet -Description $description -Force -ErrorAction Stop | Out-Null
+    }
+    catch {
+        throw "Failed to register restart scheduled task '$taskName'. Try running PowerShell as Administrator if Windows policy requires it. Error: $($_.Exception.Message)"
+    }
+
+    Write-CKInfo "Registered restart reminder task '$taskName' at $Time for user '$userId'."
+    Write-CKInfo "Task action: powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
+    Write-CKWarn "This is not a force-restart task. Verify the safe shutdown flow on Windows before adding automatic restart behavior."
+    return Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
+}
+
+function Unregister-CKRestartTask {
+    [CmdletBinding()]
+    param(
+        [hashtable]$Settings
+    )
+
+    if ($null -eq $Settings) {
+        $Settings = Get-CKSettings
+    }
+
+    return Unregister-CKTaskByName -TaskName ([string]$Settings["restartTaskName"])
+}
+
+Export-ModuleMember -Function Test-CKAdministrator, Get-CKCurrentUserId, Get-CKScriptPath, New-CKPowerShellTaskAction, Write-CKTaskPermissionHint, Register-CKServerStartupTask, Unregister-CKTaskByName, Enable-CKTaskByName, Disable-CKTaskByName, Unregister-CKServerStartupTask, Enable-CKServerStartupTask, Disable-CKServerStartupTask, Assert-CKRestartTime, Register-CKRestartTask, Unregister-CKRestartTask

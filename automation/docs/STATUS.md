@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-- 상태: T1-T7 스크립트 작성 완료, Windows 실기 검증 필요
+- 상태: T1-T8 스크립트 작성 완료, Windows 실기 검증 필요
 - 개발 환경: macOS에서 문서 작성, 실제 실행 대상은 Windows 노트북
 - 검증 명령: 문서 파일 목록 확인, `git status -sb`, `command -v pwsh`, `git diff --cached --check`
 - 접속 방식: Steam 전용 SDR(Game ID)
@@ -17,9 +17,9 @@
 
 ## 다음 작업
 
-1. Windows 노트북에서 T1-T7 모듈 import, SteamCMD 설치, 서버 설치/업데이트, 수동 시작/상태 확인, 백업, 월드 import, 자동 실행 작업 관리를 실기 검증
-2. T8 특정 시간 재시작 예약 구현
-3. 이후 T9-T10 순서로 진행
+1. Windows 노트북에서 T1-T8 모듈 import, SteamCMD 설치, 서버 설치/업데이트, 수동 시작/상태 확인, 백업, 월드 import, 자동 실행/재시작 예약 작업 관리를 실기 검증
+2. T9 사용자 문서 완성
+3. T10 Windows 실기 검증 진행
 
 ## 최근 작업
 
@@ -30,6 +30,7 @@
 - 2026-06-24: T5 Dedicated Server 데이터 백업 스크립트와 백업 모듈을 추가
 - 2026-06-24: T6 단일 `.world.gzip` import 스크립트와 월드 import 모듈을 추가
 - 2026-06-24: T7 Windows Task Scheduler 자동 실행 등록/해제/활성화/비활성화 스크립트를 추가
+- 2026-06-24: T8 Windows Task Scheduler 재시작 예약 등록/해제 스크립트를 추가
 - 2026-06-24: `automation/` 작업 영역 문서 생성
 - 2026-06-24: Git 저장소 초기화 상태를 문서에 반영
 - 2026-06-24: Steam 전용 접속과 기본 빈 월드/기존 월드 import 방향을 반영
@@ -48,6 +49,8 @@
 - 최신 `ServerConfig.json`의 월드 인덱스 필드명이 현재 후보 목록과 일치하는지?
 - Windows Task Scheduler에서 현재 사용자 AtLogOn 작업 등록/해제/활성화/비활성화가 정상 동작하는지?
 - Task Scheduler 등록에 관리자 권한이 필요한 Windows 정책인지?
+- `CoreKeeperServerRestart` 예약 작업 등록/해제가 정상 동작하는지?
+- 안전 종료 방식 확인 후 실제 자동 재시작 작업을 어떻게 확장할지?
 - Windows 노트북의 PowerShell 버전은 5.1인지 7.x인지?
 - 특정 시간 재시작 예약의 기본 추천 시간이 필요한지?
 

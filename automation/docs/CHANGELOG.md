@@ -2,6 +2,8 @@
 
 ## 2026-06-24
 
+- T1 자동화 골격 추가: `README.md`, `config/settings.example.json`, 공통/설정/경로 PowerShell 모듈 생성
+- T1 검증 문서 추가: Windows PowerShell 모듈 import 확인 명령 기록
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

@@ -1,0 +1,10 @@
+{
+  "serverInstallPath": "C:\\CoreKeeperServer",
+  "steamCmdPath": "C:\\CoreKeeperServer\\steamcmd",
+  "backupRoot": "D:\\Backups\\CoreKeeper",
+  "appId": "1963720",
+  "taskName": "CoreKeeperServer",
+  "restartTaskName": "CoreKeeperServerRestart",
+  "worldIndex": 0,
+  "restartTime": null
+}

@@ -2,12 +2,23 @@
 
 ## 기본 검증 명령
 
-현재 구현 파일이 없으므로 검증 명령은 확정되지 않았다.
+### T1 모듈 import 검증
 
-구현 후 후보:
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
 
 ```powershell
-# PowerShell 문법 검사 후보
+Import-Module .\src\CoreKeeper.Common.psm1 -Force
+Import-Module .\src\CoreKeeper.Config.psm1 -Force
+Import-Module .\src\CoreKeeper.Paths.psm1 -Force
+Get-CKSettings
+Test-CKRequiredPaths
+```
+
+`Test-CKRequiredPaths`는 아직 디렉터리를 만들지 않은 초기 상태에서 `False` 값을 포함할 수 있다.
+
+### PowerShell 문법 검사 후보
+
+```powershell
 Get-ChildItem .\scripts\*.ps1 | ForEach-Object {
   $null = [System.Management.Automation.PSParser]::Tokenize((Get-Content $_.FullName -Raw), [ref]$null)
 }
@@ -34,9 +45,14 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 ## 검증 기록
 
 - 날짜: 2026-06-24
-- 명령: 없음
-- 결과: 문서만 생성, 실행 검증 없음
-- 비고: 실제 서버 실행 환경은 Windows 노트북
+- 명령: `git status -sb`
+- 결과: 구현 전 기준 작업 트리 확인 완료
+- 비고: 실제 서버 실행 환경은 Windows 노트북이며, macOS에서는 서버 실행 검증을 하지 않음
+
+- 날짜: 2026-06-24
+- 명령: `command -v pwsh`
+- 결과: 로컬 macOS 환경에 `pwsh` 없음
+- 비고: PowerShell 모듈 import 검증은 Windows 노트북에서 수행 필요
 
 ## 알려진 이슈
 

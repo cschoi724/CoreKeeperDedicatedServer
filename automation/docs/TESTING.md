@@ -24,9 +24,11 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - SteamCMD 설치 또는 경로 확인이 동작하는지
 - App ID `1963720` 설치/업데이트가 동작하는지
 - 첫 실행 후 Dedicated Server 데이터 경로가 생성되는지
-- 기존 월드 이전 후 올바른 월드가 열리는지
+- 기본 빈 월드가 생성되는지
+- 기존 월드 import 후 올바른 월드가 열리는지
 - Game ID가 확인 가능한지
-- Task Scheduler 등록 후 재부팅 자동 시작이 동작하는지
+- Task Scheduler 자동 시작 등록/해제/활성화/비활성화가 동작하는지
+- 특정 시간 재시작 예약이 등록되는지
 - Steam 전용 SDR(Game ID) 접속 흐름이 문서와 일치하는지
 
 ## 검증 기록

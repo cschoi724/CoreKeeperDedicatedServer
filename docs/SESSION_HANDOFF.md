@@ -9,13 +9,14 @@
 - 원격 저장소 후보 반영: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`
 - 서버 런타임 데이터와 비밀 설정을 제외하기 위한 `.gitignore` 추가
 - Steam 전용 SDR(Game ID) 운영으로 방향 확정
-- 기존 Steam 계정 월드를 Dedicated Server로 이전하는 설계 문서 추가
+- 기본 빈 월드와 선택적 기존 월드 import 방향으로 설계 변경
+- 설치 경로, 백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작 결정 반영
 - 루트의 리서치/템플릿 문서를 `docs/` 하위로 정리
 
 ## 커밋
 
 - 완료 커밋: `ac5e94c docs: 프로젝트 운영 문서 추가`
-- 다음 문서 커밋 후보: `docs: 문서 자료를 docs 디렉토리로 정리`
+- 다음 문서 커밋 후보: `docs: Windows 운영 기본값과 월드 import 설계 확정`
 
 ## 검증
 
@@ -35,8 +36,8 @@
 
 1. 현재 문서 변경사항 커밋/push
 2. Windows 노트북에서 clone 후 개발 세션 시작
-3. 설치 경로와 백업 경로 확정
-4. PowerShell 자동화 템플릿 구현
+3. PowerShell 자동화 템플릿 구현
+4. Windows 노트북에서 실기 검증
 
 ## 다음 개발 에이전트 지시
 
@@ -61,16 +62,20 @@
 - SteamCMD 설치/확인
 - Core Keeper Dedicated Server 설치/업데이트
 - 서버 시작
-- 기존 월드 이전
+- 기존 월드 import
 - 백업
-- Task Scheduler 등록
+- Task Scheduler 자동 실행 등록/해제/활성화/비활성화
+- 특정 시간 서버 재시작 예약
 - Direct Connect는 현재 제외, 추후 선택 기능 후보로만 유지
 
 핵심 요구:
 
 - SDR(Game ID)를 기본 방식으로 둔다.
 - Steam 접속만 지원하는 현재 범위에서는 Direct Connect를 구현하지 않는다.
-- 월드 파일을 덮어쓰기 전 백업을 강제한다.
+- 기본은 새 빈 월드다.
+- 기존 월드 import 시 월드 파일을 덮어쓰기 전 백업을 강제한다.
+- 서버는 기본 수동 실행이다.
+- 자동 실행과 특정 시간 재시작은 선택 기능이다.
 - Windows에서만 실행 검증한다.
 
 테스트:
@@ -84,8 +89,10 @@
 - 설치 성공 여부
 - 서버 첫 실행 여부
 - Game ID 확인 여부
-- 기존 월드 이전 여부
+- 기본 빈 월드 생성 여부
+- 기존 월드 import 여부
 - 재부팅 후 자동 시작 여부
+- 특정 시간 재시작 예약 여부
 
 문서 업데이트:
 

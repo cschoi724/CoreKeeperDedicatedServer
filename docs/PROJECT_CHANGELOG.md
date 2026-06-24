@@ -11,5 +11,6 @@
 - `.gitignore`와 세션 인수인계 문서 추가
 - Steam 전용 SDR(Game ID) 운영 결정을 문서화
 - 운영 옵션 설명 문서 추가
-- 기존 Steam 월드 이전 설계 문서 추가
+- 기본 빈 월드/기존 월드 import 설계 문서 추가
 - 루트의 리서치/템플릿 문서를 `docs/research/`, `docs/templates/`로 이동
+- Windows 운영 기본값과 기본 빈 월드/import 설계를 문서화

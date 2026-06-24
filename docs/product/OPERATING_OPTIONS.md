@@ -9,9 +9,12 @@
 - 서버 설치: SteamCMD 자동 설치/확인 방식
 - 접속 방식: Steam 전용 SDR(Game ID)
 - Direct Connect: 기본 범위에서 제외
-- 서버 자동 시작: Windows Task Scheduler 사용
+- 서버 실행: 기본 수동 실행
+- 서버 자동 시작: Windows Task Scheduler로 선택 등록
+- 특정 시간 재시작: 선택 등록
 - 서버 실행 계정: Windows 노트북의 일반 사용자 계정 우선
-- 백업 위치: 기본값은 사용자 지정, 예시는 `D:\Backups\CoreKeeper`
+- 서버 설치 경로: `C:\CoreKeeperServer`
+- 백업 위치: `D:\Backups\CoreKeeper`
 
 ## SteamCMD를 쓸지 Steam GUI Tools를 쓸지
 
@@ -81,39 +84,52 @@ Direct Connect 단점:
 - 현재 프로젝트는 SDR(Game ID)를 기본이자 우선 지원 방식으로 둔다.
 - Direct Connect는 지금 구현 우선순위에서 제외하고, 나중에 필요해질 때 선택 기능으로 추가한다.
 
-## Task Scheduler 자동 시작
+## Task Scheduler 자동 시작과 재시작
 
 Task Scheduler는 Windows가 부팅될 때 지정한 프로그램이나 스크립트를 자동으로 실행하는 기능이다.
 
-이 프로젝트에서는 서버 노트북이 재부팅되어도 Core Keeper Dedicated Server가 다시 켜지게 하기 위해 사용한다.
+이 프로젝트에서는 기본 서버 실행을 수동으로 둔다. 다만 사용자가 원하면 서버 노트북이 재부팅되어도 Core Keeper Dedicated Server가 다시 켜지도록 Task Scheduler 등록 기능을 제공한다.
 
 추천 방식:
 
-- 서버 설치/첫 실행/월드 이전이 끝난 뒤 Task Scheduler 등록
+- 서버 설치/첫 실행/월드 import가 끝난 뒤 Task Scheduler 등록
 - 작업 이름은 `CoreKeeperServer`
 - 실행 대상은 이 프로젝트의 서버 시작 스크립트
 - 자동 시작 등록은 관리자 권한이 필요할 수 있으므로 별도 스크립트로 분리
+- 자동 실행은 등록/해제 또는 활성화/비활성화할 수 있게 구현
+- 특정 시간 재시작은 별도 예약 작업 `CoreKeeperServerRestart` 후보로 구현
+- 재시작 시간은 사용자가 직접 입력
 
 ## 서버 실행 계정
 
-처음에는 Windows 노트북의 일반 사용자 계정으로 실행하는 것을 추천한다.
+Windows 노트북의 일반 사용자 계정으로 실행한다.
 
 이유:
 
 - Core Keeper 저장 경로가 사용자 프로필 아래에 생성된다.
 - 사용자가 파일을 찾고 백업하기 쉽다.
-- Dedicated Server 초기 설정과 월드 이전이 단순하다.
+- Dedicated Server 초기 설정과 월드 import가 단순하다.
 
-별도 서버 전용 Windows 계정은 나중에 운영이 안정화된 뒤 고려한다.
+별도 서버 전용 Windows 계정은 만들지 않는다.
 
 ## 백업 위치
 
-백업은 서버 데이터와 같은 디스크만 쓰면 디스크 고장에 취약하다. 다만 첫 구현에서는 사용자 입력 방식이 가장 안전하다.
+백업은 `D:\Backups\CoreKeeper`를 기본 경로로 사용한다.
 
 추천:
 
-- 기본 예시: `D:\Backups\CoreKeeper`
-- D 드라이브가 없으면 사용자가 직접 경로 입력
-- 월드 이전 전에는 무조건 백업
+- 기본 경로: `D:\Backups\CoreKeeper`
+- D 드라이브가 없으면 구현 세션에서 오류 메시지와 대체 경로 입력을 제공
+- 월드 import 전에는 무조건 백업
 - 업데이트 전에도 백업 권장
 
+## 기존 월드 가져오기
+
+Windows 노트북에는 Core Keeper 실행 이력과 기존 월드가 없다. 따라서 기존 Steam 계정 폴더 자동 탐색을 기본으로 하지 않는다.
+
+추천 방식:
+
+- 서버 기본값은 새 빈 월드
+- 기존 월드를 쓰고 싶을 때만 사용자가 단일 `.world.gzip` 파일을 가져온다.
+- import 스크립트는 가져온 파일을 Dedicated Server 저장 경로에 복사한다.
+- import 전 Dedicated Server 데이터는 반드시 백업한다.

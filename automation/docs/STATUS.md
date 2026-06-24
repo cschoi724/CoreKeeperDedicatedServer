@@ -6,28 +6,34 @@
 - 개발 환경: macOS에서 문서 작성, 실제 실행 대상은 Windows 노트북
 - 검증 명령: 문서 파일 목록 확인, `git status -sb`
 - 접속 방식: Steam 전용 SDR(Game ID)
-- 기존 월드: 사용자 Steam 계정의 Core Keeper 월드에서 이전 예정
+- 서버 설치 경로: `C:\CoreKeeperServer`
+- 백업 경로: `D:\Backups\CoreKeeper`
+- SteamCMD 설치: 템플릿에서 자동 설치
+- 실행 방식: 기본 수동 실행
+- 자동 실행: 선택 기능, 온/오프 가능
+- 특정 시간 재시작: 선택 기능
+- 서버 실행 계정: 현재 Windows 로그인 사용자
+- 기존 월드: 서버 노트북에는 없음, 필요 시 사용자가 가져온 파일을 import
 
 ## 다음 작업
 
-1. 설치 경로와 백업 경로 기본값 확정
-2. PowerShell 템플릿 구조 확정
-3. 설치/업데이트 스크립트부터 구현
-4. `WORLD_MIGRATION_DESIGN.md` 기준으로 월드 이전 스크립트 구현
+1. PowerShell 템플릿 구조 확정
+2. SteamCMD 자동 설치 스크립트 구현
+3. 서버 설치/업데이트/시작 스크립트 구현
+4. `WORLD_MIGRATION_DESIGN.md` 기준으로 월드 import 스크립트 구현
+5. `OPERATIONS_DESIGN.md` 기준으로 자동 실행/재시작 스크립트 구현
 
 ## 최근 작업
 
 - 2026-06-24: `automation/` 작업 영역 문서 생성
 - 2026-06-24: Git 저장소 초기화 상태를 문서에 반영
-- 2026-06-24: Steam 전용 접속과 기존 Steam 계정 월드 이전 방향을 반영
+- 2026-06-24: Steam 전용 접속과 기본 빈 월드/기존 월드 import 방향을 반영
+- 2026-06-24: 운영 기본값과 기본 빈 월드/import 설계를 반영
 
 ## 열린 질문
 
 - Windows 노트북의 PowerShell 버전은 5.1인지 7.x인지?
-- SteamCMD를 템플릿이 직접 다운로드할지, 사용자가 미리 설치할지?
-- 서버 설치 기본 경로는 `C:\CoreKeeperServer`로 둘지?
-- 백업 기본 경로는 `D:\Backups\CoreKeeper`로 둘지, 사용자 입력으로 받을지?
-- 서버 자동 시작 작업 이름은 `CoreKeeperServer`로 둘지?
+- 특정 시간 재시작 예약의 기본 추천 시간이 필요한지?
 
 ## 세션 시작 체크리스트
 

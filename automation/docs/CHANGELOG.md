@@ -12,6 +12,8 @@
 - T4 상태 확인 추가: Dedicated Server 데이터 폴더, 실행 후보, 실행 프로세스, Game ID 로그 힌트 확인
 - T5 서버 데이터 백업 추가: `scripts/backup-server.ps1`, `src/CoreKeeper.Backup.psm1` 생성
 - T5 백업 정책 추가: `worlds`, `worldinfos`, `ServerConfig.json` 백업, 누락 대상 skip 메시지, manifest 기록
+- T6 기존 월드 import 추가: `scripts/import-world.ps1`, `src/CoreKeeper.World.psm1` 생성
+- T6 import 안전 정책 추가: 단일 `.world.gzip` 검증, import 전 백업 강제, 기존 대상 덮어쓰기 명시 확인, 원본 파일 보존
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

@@ -332,6 +332,8 @@ feat: 서버 데이터 백업 스크립트 추가
 
 ### T6. 기존 월드 import
 
+상태: 완료, Windows 실기 검증 필요
+
 목표:
 
 - 사용자가 가져온 단일 `.world.gzip` 파일을 Dedicated Server 월드로 import한다.

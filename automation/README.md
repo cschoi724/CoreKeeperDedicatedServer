@@ -47,6 +47,12 @@ Test-CKRequiredPaths
 .\scripts\backup-server.ps1 -Reason manual
 ```
 
+10. 기존 월드를 가져올 때는 서버를 안전하게 중지한 뒤 단일 `.world.gzip` 파일을 import합니다.
+
+```powershell
+.\scripts\import-world.ps1 -WorldFile "D:\Incoming\0.world.gzip" -WorldIndex 0
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -123,6 +129,27 @@ before-update-YYYYMMDD-HHMMSS
 
 백업 대상이 아직 생성되지 않았으면 해당 대상을 건너뛰고 메시지를 출력합니다. 복사 실패는 후속 작업을 중단할 수 있도록 에러로 처리합니다.
 
+## 기존 월드 Import
+
+`scripts\import-world.ps1`은 사용자가 가져온 단일 `.world.gzip` 파일만 Dedicated Server 월드로 복사합니다.
+
+동작 순서:
+
+1. 입력 파일이 존재하고 `.world.gzip`이며 비어 있지 않은지 확인합니다.
+2. Dedicated Server 데이터 폴더가 있는지 확인합니다.
+3. 서버가 실행 중이면 중단합니다.
+4. `before-import-YYYYMMDD-HHMMSS` 백업을 먼저 생성합니다.
+5. `worlds\<WorldIndex>.world.gzip`로 복사합니다.
+6. `ServerConfig.json`에 알려진 월드 인덱스 필드가 있으면 JSON 파서로 값을 맞춥니다.
+
+기존 대상 월드 파일이 있으면 기본값으로 덮어쓰지 않습니다. 백업을 확인한 뒤 명시적으로 덮어쓰려면 `-ConfirmOverwrite`를 추가합니다.
+
+```powershell
+.\scripts\import-world.ps1 -WorldFile "D:\Incoming\0.world.gzip" -WorldIndex 0 -ConfirmOverwrite
+```
+
+원본 월드 파일은 삭제하지 않습니다. 단일 `.world.gzip`만으로 `worldinfos` 없이 정상 실행되는지는 Windows 실기 검증이 필요합니다.
+
 ## 모듈 import 검증
 
 macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows PowerShell에서 다음 명령으로 모듈 로딩만 먼저 확인합니다.
@@ -134,6 +161,7 @@ Import-Module .\src\CoreKeeper.Paths.psm1 -Force
 Import-Module .\src\CoreKeeper.Backup.psm1 -Force
 Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
 Import-Module .\src\CoreKeeper.Server.psm1 -Force
+Import-Module .\src\CoreKeeper.World.psm1 -Force
 Get-CKSettings
 Test-CKRequiredPaths
 ```

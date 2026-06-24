@@ -90,6 +90,27 @@ Test-Path D:\Backups\CoreKeeper
 - 백업 대상이 없으면 명확한 skip 메시지를 출력하고 manifest를 생성한다.
 - 복사 실패는 에러로 중단되어 후속 destructive 작업을 막을 수 있다.
 
+### T6 기존 월드 import 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.World.psm1 -Force
+.\scripts\backup-server.ps1 -Reason manual
+.\scripts\import-world.ps1 -WorldFile "D:\Incoming\0.world.gzip" -WorldIndex 0
+Test-Path "$env:USERPROFILE\AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServer\worlds\0.world.gzip"
+```
+
+기대 결과:
+
+- 입력 파일이 단일 `.world.gzip`이 아니거나 비어 있으면 중단한다.
+- Dedicated Server 데이터 폴더가 없으면 먼저 서버를 1회 실행하라고 안내하고 중단한다.
+- 서버가 실행 중이면 import를 중단한다.
+- import 전 `before-import-YYYYMMDD-HHMMSS` 백업을 강제한다.
+- 기존 대상 파일이 있으면 `-ConfirmOverwrite` 없이는 덮어쓰지 않는다.
+- 원본 월드 파일은 삭제하지 않는다.
+- `ServerConfig.json`에 알려진 월드 인덱스 필드가 있으면 JSON 파서로 업데이트한다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -135,13 +156,13 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 
 - 날짜: 2026-06-24
 - 명령: `git diff --cached --check`
-- 결과: T3/T4 스테이징 기준 공백 오류 없음
+- 결과: T3-T6 스테이징 기준 공백 오류 없음
 - 비고: 커밋 전 확인 완료
 
 - 날짜: 2026-06-24
 - 명령: PowerShell 문법 검사
 - 결과: 로컬 macOS 환경에 `pwsh`가 없어 미실행
-- 비고: Windows PowerShell에서 T1-T5 검증 명령 실행 필요
+- 비고: Windows PowerShell에서 T1-T6 검증 명령 실행 필요
 
 ## 알려진 이슈
 
@@ -151,4 +172,6 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - Core Keeper Dedicated Server 최신 Windows 실행 파일명/배치 파일명은 Windows 노트북에서 재확인해야 한다.
 - 안전한 서버 종료 방식은 Windows 노트북에서 재확인해야 한다.
 - `D:\Backups\CoreKeeper` 생성과 Dedicated Server 데이터 백업은 Windows 노트북에서 재확인해야 한다.
+- 단일 `.world.gzip` import가 `worldinfos` 없이 정상 실행되는지는 Windows 노트북에서 재확인해야 한다.
+- 최신 `ServerConfig.json` 월드 인덱스 필드명은 Windows 노트북에서 재확인해야 한다.
 - Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

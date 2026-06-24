@@ -22,6 +22,8 @@
 - T9 테스트 문서 정리: `docs/TESTING.md`를 Windows 실기 검증 명령 순서, 미검증 항목, 현재 범위 밖 항목 중심으로 재구성
 - Windows Codex 실기 검증 Runbook 추가: Codex 세션 시작, 설치, 실행, 백업, import, Task Scheduler 검증, 결과 커밋 절차 정리
 - Dedicated Server 플레이어 0명 sleep/대기 동작과 T10 이후 운영 확장 후보를 문서 기준으로 연결
+- T10 로그/증거 수집 체크리스트 추가: 실행 파일명, Game ID, 데이터 경로, 로그, sleep/idle, 안전 종료, 실행 중 백업, Task Scheduler 동작 확인
+- 자동 백업, Watchdog, Discord Webhook, 상태 조회 확장을 T10 이후 2차 범위로 분리
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

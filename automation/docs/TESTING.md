@@ -245,10 +245,31 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - Task Scheduler `CoreKeeperServerRestart` 작업 등록/해제가 동작하는지
 - 재시작 예약은 안전 종료 방식 확인 전까지 실제 강제 재시작을 수행하지 않음
 
+## T10 로그/증거 수집 체크리스트
+
+T10은 1차 구현 검증과 2차 운영 확장 설계를 위한 증거 수집을 함께 수행한다. 아래 항목은 성공/실패 여부와 함께 실제 출력, 파일 경로, 관찰 내용을 기록한다.
+
+- Dedicated Server 실행 파일명 또는 배치 파일명
+- 서버 시작 콘솔 출력
+- Game ID 출력 위치와 값 변경 방식
+- Dedicated Server 데이터 경로
+- `worlds`, `worldinfos`, `ServerConfig.json` 실제 존재 여부
+- `ServerConfig.json` 실제 필드명과 월드 인덱스 지정 방식
+- 서버 로그 파일 위치와 주요 로그 형식
+- 플레이어 접속/퇴장 시 콘솔 또는 로그 출력
+- 플레이어 0명일 때 sleep/idle 진입 로그
+- sleep/idle 상태에서 플레이어 재접속 시 복귀 로그
+- 서버 안전 종료 명령 또는 콘솔 입력 방식
+- 안전 종료 후 월드 저장이 완료되는 시점
+- 서버 실행 중 백업했을 때 파일 잠금 또는 손상 위험 여부
+- Task Scheduler AtLogOn 작업이 실제 로그인 후 서버를 시작하는지
+- 예약 재시작 작업을 실제 재시작으로 확장할 수 있는 조건
+
 ## 확인된 운영 지식
 
 - 플레이어가 0명일 때 Core Keeper Dedicated Server는 sleep 또는 대기 모드로 전환된다.
 - T10 이후 상태 조회/Watchdog 검증 시 sleep/idle 상태와 프로세스 비정상 종료를 구분해야 한다.
+- 자동 백업 정책, Watchdog, Discord Webhook, 상태 조회 확장은 위 로그/증거 수집 후 2차 범위에서 구현 여부를 결정한다.
 
 ## 현재 범위 밖
 

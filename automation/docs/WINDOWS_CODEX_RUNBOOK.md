@@ -336,6 +336,18 @@ Get-ScheduledTask -TaskName CoreKeeperServerRestart
 
 성공/실패를 모두 기록한다. 실패한 항목은 다음 작업으로 분리한다.
 
+추가로 T10에서는 2차 운영 확장 설계를 위해 아래 증거를 함께 수집한다.
+
+- Dedicated Server 실행 파일명 또는 배치 파일명
+- 서버 시작 콘솔 출력과 Game ID 출력 위치
+- Dedicated Server 데이터 경로와 `ServerConfig.json` 실제 구조
+- 서버 로그 파일 위치와 접속/퇴장 로그
+- 플레이어 0명 sleep/idle 진입 및 재접속 복귀 로그
+- 안전 종료 명령, 저장 완료 시점, 실행 중 백업 안전성
+- Task Scheduler 자동 실행과 예약 작업의 실제 동작 결과
+
+자동 백업 정책, Watchdog, Discord Webhook, 상태 조회 확장은 위 증거를 수집한 뒤 다음 개발 범위로 분리한다.
+
 ## 18. 커밋과 Push
 
 검증 문서를 수정한 뒤 상태를 확인한다.
@@ -372,4 +384,3 @@ git status -sb
 9. Task Scheduler 등록 실패
 
 실패한 단계에서 멈추고, 출력 전체와 함께 `automation/docs/TESTING.md`에 기록한다.
-

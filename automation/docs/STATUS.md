@@ -19,8 +19,9 @@
 
 1. T10 Windows 실기 검증 진행
 2. Windows 노트북에서 T1-T9 문서 절차대로 모듈 import, SteamCMD 설치, 서버 설치/업데이트, 수동 시작/상태 확인, 백업, 월드 import, 자동 실행/재시작 예약 작업 관리를 검증
-3. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
-4. T10 이후 운영 확장 후보는 `docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md` 기준으로 검토
+3. T10에서 서버 실행 파일명, Game ID 출력 위치, 데이터 경로, `ServerConfig.json`, 안전 종료 방식, sleep/idle 로그, 접속/퇴장 로그를 수집
+4. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
+5. 추가 요구사항은 T10 로그 수집 후 `docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md` 기준의 2차 운영 확장으로 검토
 
 ## 최근 작업
 
@@ -38,6 +39,7 @@
 - 2026-06-24: Steam 전용 접속과 기본 빈 월드/기존 월드 import 방향을 반영
 - 2026-06-24: 운영 기본값과 기본 빈 월드/import 설계를 반영
 - 2026-06-24: `DEVELOPMENT_PLAN.md`를 T1-T10 작업 단위 기반 실행 계획으로 구체화
+- 2026-06-24: T10을 1차 Windows 실기 검증과 2차 운영 확장용 로그/증거 수집 단계로 정리
 
 ## 열린 질문
 
@@ -59,6 +61,7 @@
 
 - Core Keeper Dedicated Server는 플레이어 0명일 때 자동으로 sleep 또는 대기 모드로 전환된다.
 - Watchdog 또는 상태 조회 확장 시 이 상태를 장애로 오인하지 않는다.
+- 자동 백업, Watchdog, Discord 알림, 상태 조회 확장은 T10 로그 수집 이후 2차 범위로 설계한다.
 
 ## 세션 시작 체크리스트
 

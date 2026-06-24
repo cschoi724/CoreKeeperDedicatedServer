@@ -17,11 +17,11 @@
 
 ## 다음 작업
 
-1. PowerShell 템플릿 구조 확정
-2. SteamCMD 자동 설치 스크립트 구현
-3. 서버 설치/업데이트/시작 스크립트 구현
-4. `WORLD_MIGRATION_DESIGN.md` 기준으로 월드 import 스크립트 구현
-5. `OPERATIONS_DESIGN.md` 기준으로 자동 실행/재시작 스크립트 구현
+1. `DEVELOPMENT_PLAN.md`의 T1 자동화 골격 생성부터 진행
+2. T2 SteamCMD 자동 설치 구현
+3. T3 Dedicated Server 설치/업데이트 구현
+4. T4 수동 서버 시작과 상태 확인 구현
+5. 이후 T5-T10 순서로 진행
 
 ## 최근 작업
 
@@ -29,6 +29,7 @@
 - 2026-06-24: Git 저장소 초기화 상태를 문서에 반영
 - 2026-06-24: Steam 전용 접속과 기본 빈 월드/기존 월드 import 방향을 반영
 - 2026-06-24: 운영 기본값과 기본 빈 월드/import 설계를 반영
+- 2026-06-24: `DEVELOPMENT_PLAN.md`를 T1-T10 작업 단위 기반 실행 계획으로 구체화
 
 ## 열린 질문
 

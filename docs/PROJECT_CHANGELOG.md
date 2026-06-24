@@ -14,3 +14,4 @@
 - 기본 빈 월드/기존 월드 import 설계 문서 추가
 - 루트의 리서치/템플릿 문서를 `docs/research/`, `docs/templates/`로 이동
 - Windows 운영 기본값과 기본 빈 월드/import 설계를 문서화
+- 자동화 개발 계획을 작업 단위별 실행 계획으로 구체화

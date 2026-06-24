@@ -12,11 +12,12 @@
 - 기본 빈 월드와 선택적 기존 월드 import 방향으로 설계 변경
 - 설치 경로, 백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작 결정 반영
 - 루트의 리서치/템플릿 문서를 `docs/` 하위로 정리
+- `automation/docs/DEVELOPMENT_PLAN.md`를 T1-T10 실행 계획으로 구체화
 
 ## 커밋
 
 - 완료 커밋: `ac5e94c docs: 프로젝트 운영 문서 추가`
-- 다음 문서 커밋 후보: `docs: Windows 운영 기본값과 월드 import 설계 확정`
+- 다음 문서 커밋 후보: `docs: 자동화 개발 계획 구체화`
 
 ## 검증
 
@@ -36,8 +37,8 @@
 
 1. 현재 문서 변경사항 커밋/push
 2. Windows 노트북에서 clone 후 개발 세션 시작
-3. PowerShell 자동화 템플릿 구현
-4. Windows 노트북에서 실기 검증
+3. `automation/docs/DEVELOPMENT_PLAN.md`의 T1부터 순서대로 구현
+4. Windows 노트북에서 T10 실기 검증
 
 ## 다음 개발 에이전트 지시
 
@@ -55,7 +56,7 @@
 
 이번 작업 목표:
 
-- Windows 노트북에서 실행 가능한 Core Keeper Dedicated Server 자동화 템플릿 구현
+- `automation/docs/DEVELOPMENT_PLAN.md`의 T1 자동화 골격 생성부터 시작해 Windows 노트북에서 실행 가능한 Core Keeper Dedicated Server 자동화 템플릿 구현
 
 구현 대상:
 

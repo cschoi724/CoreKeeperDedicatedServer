@@ -41,11 +41,11 @@ Steam에서 직접 호스트하던 기존 Core Keeper 월드를 Dedicated Server
 
 ## 다음 작업
 
-1. `automation/` 작업 영역 개발 세션에서 구현 파일 구조를 확정한다.
-2. SteamCMD 자동 설치와 서버 설치 스크립트를 구현한다.
-3. 기본 빈 월드 시작 흐름을 구현한다.
-4. 기존 월드 가져오기 스크립트를 단순 import 방식으로 구현한다.
-5. 집 Windows 노트북의 새 Codex 세션에서 SteamCMD와 Dedicated Server 실행 방식을 검증한다.
+1. `automation/docs/DEVELOPMENT_PLAN.md`의 T1 자동화 골격 생성부터 진행한다.
+2. T2 SteamCMD 자동 설치를 구현한다.
+3. T3 Dedicated Server 설치/업데이트를 구현한다.
+4. T4 수동 서버 시작과 상태 확인을 구현한다.
+5. 집 Windows 노트북의 새 Codex 세션에서 T10 실기 검증을 진행한다.
 
 ## 최근 작업
 
@@ -53,6 +53,7 @@ Steam에서 직접 호스트하던 기존 Core Keeper 월드를 Dedicated Server
 - 2026-06-24: 로컬 Git 저장소를 초기화하고 원격 저장소 정보를 문서에 반영함.
 - 2026-06-24: Steam 전용 SDR(Game ID) 운영과 기본 빈 월드/기존 월드 import 방향을 확정함.
 - 2026-06-24: 설치/백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작, 기본 빈 월드 방향을 확정함.
+- 2026-06-24: 자동화 개발 계획을 T1-T10 실행 단위로 구체화함.
 
 ## 열린 질문
 

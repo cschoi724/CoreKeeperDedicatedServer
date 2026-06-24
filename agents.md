@@ -28,8 +28,8 @@
 
 ## 주요 기준 문서
 
-- 리서치 기준: `deep-research-report.md`
-- 운영 문서 기준: `CODEX_PROJECT_RULES_TEMPLATE.md`
+- 리서치 기준: `docs/research/deep-research-report.md`
+- 운영 문서 기준: `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md`
 - 프로젝트 상태: `docs/PROJECT_STATUS.md`
 - 결정사항: `docs/PROJECT_DECISIONS.md`
 - Git 전략: `docs/GIT_WORKFLOW.md`

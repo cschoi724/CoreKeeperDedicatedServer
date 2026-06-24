@@ -4,7 +4,7 @@
 
 - 프로젝트 단계: M0 문서 기반 준비
 - 우선 개발 영역: `automation`
-- 최신 기준 문서: `deep-research-report.md`, `CODEX_PROJECT_RULES_TEMPLATE.md`
+- 최신 기준 문서: `docs/research/deep-research-report.md`, `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md`
 - 현재 주요 이슈:
   - 실제 구현은 아직 시작하지 않음
   - macOS에서 문서 구조만 세팅하고, 실제 실행 환경은 Windows 노트북으로 전제

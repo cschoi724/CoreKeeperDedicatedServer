@@ -12,3 +12,4 @@
 - Steam 전용 SDR(Game ID) 운영 결정을 문서화
 - 운영 옵션 설명 문서 추가
 - 기존 Steam 월드 이전 설계 문서 추가
+- 루트의 리서치/템플릿 문서를 `docs/research/`, `docs/templates/`로 이동

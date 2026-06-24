@@ -20,7 +20,7 @@
 ### 2026-06-24: 기본 운영 방식은 SteamCMD + SDR(Game ID)
 
 - 결정: 구현 기본값은 SteamCMD 기반 설치/업데이트와 SDR(Game ID) 접속 방식이다.
-- 근거: `deep-research-report.md`가 Windows 운영에서 SteamCMD 기반 별도 서버 폴더를 실무적으로 편하다고 정리했고, Steam-only 비공개 서버에는 SDR이 가장 단순하고 안전하다고 정리함.
+- 근거: `docs/research/deep-research-report.md`가 Windows 운영에서 SteamCMD 기반 별도 서버 폴더를 실무적으로 편하다고 정리했고, Steam-only 비공개 서버에는 SDR이 가장 단순하고 안전하다고 정리함.
 - 상태: 구현 전 최신 실행 인자와 실제 Windows 동작 확인 필요.
 
 ### 2026-06-24: Git 저장소와 원격 저장소 설정

@@ -11,6 +11,7 @@
 
 ## 제품/리서치 문서
 
-- `../deep-research-report.md`: Core Keeper Dedicated Server 구축 리서치
+- `research/deep-research-report.md`: Core Keeper Dedicated Server 구축 리서치
+- `research/Core Keeper 전용 서버와 상시 호스팅 구축 가이드.pdf`: PDF 리서치 가이드
+- `templates/CODEX_PROJECT_RULES_TEMPLATE.md`: Codex 프로젝트 운영 템플릿
 - `product/`: 제품 요구사항과 운영 시나리오 문서를 추가할 위치
-

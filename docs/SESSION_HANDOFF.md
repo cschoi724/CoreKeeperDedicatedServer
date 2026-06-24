@@ -10,11 +10,12 @@
 - 서버 런타임 데이터와 비밀 설정을 제외하기 위한 `.gitignore` 추가
 - Steam 전용 SDR(Game ID) 운영으로 방향 확정
 - 기존 Steam 계정 월드를 Dedicated Server로 이전하는 설계 문서 추가
+- 루트의 리서치/템플릿 문서를 `docs/` 하위로 정리
 
 ## 커밋
 
 - 완료 커밋: `ac5e94c docs: 프로젝트 운영 문서 추가`
-- 다음 문서 커밋 후보: `docs: 서버 운영 방향과 월드 이전 설계 보완`
+- 다음 문서 커밋 후보: `docs: 문서 자료를 docs 디렉토리로 정리`
 
 ## 검증
 
@@ -47,7 +48,7 @@
 
 - 루트 `agents.md`
 - `automation/agents.md`
-- `deep-research-report.md`
+- `docs/research/deep-research-report.md`
 - `docs/PROJECT_DECISIONS.md`
 - `automation/docs/DEVELOPMENT_PLAN.md`
 

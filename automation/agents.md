@@ -22,7 +22,7 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 ## 참고 문서
 
 - 루트 기준: `../agents.md`
-- 리서치 기준: `../deep-research-report.md`
+- 리서치 기준: `../docs/research/deep-research-report.md`
 - 프로젝트 상태: `../docs/PROJECT_STATUS.md`
 - 프로젝트 결정사항: `../docs/PROJECT_DECISIONS.md`
 - 개발 계획: `docs/DEVELOPMENT_PLAN.md`

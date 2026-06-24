@@ -22,7 +22,7 @@
 - 개발 계획: `automation/docs/DEVELOPMENT_PLAN.md`
 - 운영 옵션 설명: `docs/product/OPERATING_OPTIONS.md`
 - 기존 월드 이전 설계: `automation/docs/WORLD_MIGRATION_DESIGN.md`
-- 리서치 문서: `deep-research-report.md`
+- 리서치 문서: `docs/research/deep-research-report.md`
 
 ## 다음 단계
 

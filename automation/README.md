@@ -21,6 +21,12 @@ Get-CKSettings
 Test-CKRequiredPaths
 ```
 
+6. SteamCMD를 설치합니다.
+
+```powershell
+.\scripts\install-steamcmd.ps1
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -43,6 +49,18 @@ Test-CKRequiredPaths
 - 자동 실행과 특정 시간 재시작은 추후 Task Scheduler 기반 선택 기능으로 제공합니다.
 - 절전모드 설정은 자동 변경하지 않고 사용자가 직접 확인합니다.
 
+## SteamCMD 설치
+
+`scripts\install-steamcmd.ps1`은 다음 순서로 동작합니다.
+
+1. 설정 파일을 읽습니다.
+2. `steamCmdPath` 폴더를 확인하거나 생성합니다.
+3. `steamcmd.exe`가 이미 있으면 재사용합니다.
+4. 없으면 Valve CDN의 Windows SteamCMD zip을 다운로드하고 압축을 해제합니다.
+5. 압축 해제 후 `steamcmd.exe` 존재 여부를 확인합니다.
+
+이 단계는 네트워크 연결이 필요합니다.
+
 ## 모듈 import 검증
 
 macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows PowerShell에서 다음 명령으로 모듈 로딩만 먼저 확인합니다.
@@ -51,6 +69,7 @@ macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows Power
 Import-Module .\src\CoreKeeper.Common.psm1 -Force
 Import-Module .\src\CoreKeeper.Config.psm1 -Force
 Import-Module .\src\CoreKeeper.Paths.psm1 -Force
+Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
 Get-CKSettings
 Test-CKRequiredPaths
 ```

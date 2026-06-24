@@ -16,6 +16,23 @@ Test-CKRequiredPaths
 
 `Test-CKRequiredPaths`는 아직 디렉터리를 만들지 않은 초기 상태에서 `False` 값을 포함할 수 있다.
 
+### T2 SteamCMD 설치 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
+Get-CKSteamCmdDownloadUrl
+.\scripts\install-steamcmd.ps1
+Test-Path C:\CoreKeeperServer\steamcmd\steamcmd.exe
+```
+
+기대 결과:
+
+- `steamcmd.exe`가 이미 있으면 재사용한다.
+- 없으면 `C:\CoreKeeperServer\steamcmd`에 다운로드/압축 해제한다.
+- 다운로드 실패, 압축 해제 실패, `steamcmd.exe` 미존재는 명확한 에러로 중단한다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -52,7 +69,12 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 날짜: 2026-06-24
 - 명령: `command -v pwsh`
 - 결과: 로컬 macOS 환경에 `pwsh` 없음
-- 비고: PowerShell 모듈 import 검증은 Windows 노트북에서 수행 필요
+- 비고: PowerShell 모듈 import와 SteamCMD 설치 검증은 Windows 노트북에서 수행 필요
+
+- 날짜: 2026-06-24
+- 명령: `find . -maxdepth 3 -type f | sort`
+- 결과: T1/T2 파일 구조 생성 확인
+- 비고: macOS에서는 SteamCMD 다운로드/실행 검증을 하지 않음
 
 ## 알려진 이슈
 

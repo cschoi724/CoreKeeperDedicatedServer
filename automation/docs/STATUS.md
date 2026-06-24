@@ -2,9 +2,9 @@
 
 ## 현재 상태
 
-- 상태: T1 자동화 골격 작성 중
+- 상태: T1 자동화 골격 완료, T2 SteamCMD 자동 설치 스크립트 작성 완료
 - 개발 환경: macOS에서 문서 작성, 실제 실행 대상은 Windows 노트북
-- 검증 명령: 문서 파일 목록 확인, `git status -sb`
+- 검증 명령: 문서 파일 목록 확인, `git status -sb`, `command -v pwsh`
 - 접속 방식: Steam 전용 SDR(Game ID)
 - 서버 설치 경로: `C:\CoreKeeperServer`
 - 백업 경로: `D:\Backups\CoreKeeper`
@@ -17,15 +17,15 @@
 
 ## 다음 작업
 
-1. `DEVELOPMENT_PLAN.md`의 T1 자동화 골격 생성부터 진행
-2. T2 SteamCMD 자동 설치 구현
-3. T3 Dedicated Server 설치/업데이트 구현
-4. T4 수동 서버 시작과 상태 확인 구현
-5. 이후 T5-T10 순서로 진행
+1. Windows 노트북에서 T1 모듈 import와 T2 SteamCMD 설치를 실기 검증
+2. T3 Dedicated Server 설치/업데이트 구현
+3. T4 수동 서버 시작과 상태 확인 구현
+4. 이후 T5-T10 순서로 진행
 
 ## 최근 작업
 
 - 2026-06-24: T1 자동화 골격으로 README, example 설정, 공통/설정/경로 PowerShell 모듈을 추가
+- 2026-06-24: T2 SteamCMD 자동 설치 스크립트와 SteamCMD PowerShell 모듈을 추가
 - 2026-06-24: `automation/` 작업 영역 문서 생성
 - 2026-06-24: Git 저장소 초기화 상태를 문서에 반영
 - 2026-06-24: Steam 전용 접속과 기본 빈 월드/기존 월드 import 방향을 반영
@@ -35,6 +35,7 @@
 ## 열린 질문
 
 - Windows 노트북에서 T1 PowerShell 모듈 import 검증이 통과하는지?
+- Windows 노트북에서 T2 SteamCMD 다운로드/압축 해제 검증이 통과하는지?
 - Windows 노트북의 PowerShell 버전은 5.1인지 7.x인지?
 - 특정 시간 재시작 예약의 기본 추천 시간이 필요한지?
 

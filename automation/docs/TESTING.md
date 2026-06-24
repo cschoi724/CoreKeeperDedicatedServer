@@ -72,6 +72,24 @@ Get-CKServerStatus
 - `status-server.ps1`은 설치 폴더, Dedicated Server 데이터 폴더, `worlds`, `ServerConfig.json`, 실행 프로세스, Game ID 로그 힌트를 출력한다.
 - `stop-server.ps1`은 안전 종료 방식이 Windows에서 확인되기 전까지 강제 종료하지 않고 수동 종료 안내만 출력한다.
 
+### T5 서버 데이터 백업 검증
+
+Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.
+
+```powershell
+Import-Module .\src\CoreKeeper.Backup.psm1 -Force
+Get-CKBackupTargets
+.\scripts\backup-server.ps1 -Reason manual
+Test-Path D:\Backups\CoreKeeper
+```
+
+기대 결과:
+
+- `D:\Backups\CoreKeeper\manual-YYYYMMDD-HHMMSS` 백업 폴더가 생성된다.
+- `worlds`, `worldinfos`, `ServerConfig.json`이 있으면 백업 폴더로 복사된다.
+- 백업 대상이 없으면 명확한 skip 메시지를 출력하고 manifest를 생성한다.
+- 복사 실패는 에러로 중단되어 후속 destructive 작업을 막을 수 있다.
+
 ### PowerShell 문법 검사 후보
 
 ```powershell
@@ -123,7 +141,7 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 날짜: 2026-06-24
 - 명령: PowerShell 문법 검사
 - 결과: 로컬 macOS 환경에 `pwsh`가 없어 미실행
-- 비고: Windows PowerShell에서 T1-T4 검증 명령 실행 필요
+- 비고: Windows PowerShell에서 T1-T5 검증 명령 실행 필요
 
 ## 알려진 이슈
 
@@ -132,4 +150,5 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - SteamCMD anonymous `app_update 1963720 validate` 성공 여부는 Windows 노트북에서 재확인해야 한다.
 - Core Keeper Dedicated Server 최신 Windows 실행 파일명/배치 파일명은 Windows 노트북에서 재확인해야 한다.
 - 안전한 서버 종료 방식은 Windows 노트북에서 재확인해야 한다.
+- `D:\Backups\CoreKeeper` 생성과 Dedicated Server 데이터 백업은 Windows 노트북에서 재확인해야 한다.
 - Windows 실기 검증은 집 Windows 노트북에서 새 Codex 세션으로 진행한다.

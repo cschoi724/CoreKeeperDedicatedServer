@@ -41,6 +41,12 @@ Test-CKRequiredPaths
 .\scripts\status-server.ps1
 ```
 
+9. 필요할 때 Dedicated Server 데이터를 백업합니다.
+
+```powershell
+.\scripts\backup-server.ps1 -Reason manual
+```
+
 기본 경로는 다음과 같습니다.
 
 - 서버 설치 경로: `C:\CoreKeeperServer`
@@ -99,6 +105,24 @@ Test-CKRequiredPaths
 
 `scripts\stop-server.ps1`은 안전 종료 방식이 확인되기 전까지 서버를 강제 종료하지 않습니다. 서버 콘솔 또는 공식 종료 방식으로 직접 종료한 뒤 `status-server.ps1`로 상태를 다시 확인합니다.
 
+## 서버 데이터 백업
+
+`scripts\backup-server.ps1`은 Dedicated Server 데이터 폴더에서 다음 대상을 백업합니다.
+
+- `worlds`
+- `worldinfos`
+- `ServerConfig.json`
+
+백업 위치는 기본값 `D:\Backups\CoreKeeper`이며, 폴더명은 사유와 시각으로 정합니다.
+
+```text
+manual-YYYYMMDD-HHMMSS
+before-import-YYYYMMDD-HHMMSS
+before-update-YYYYMMDD-HHMMSS
+```
+
+백업 대상이 아직 생성되지 않았으면 해당 대상을 건너뛰고 메시지를 출력합니다. 복사 실패는 후속 작업을 중단할 수 있도록 에러로 처리합니다.
+
 ## 모듈 import 검증
 
 macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows PowerShell에서 다음 명령으로 모듈 로딩만 먼저 확인합니다.
@@ -107,6 +131,7 @@ macOS에서는 실제 서버 실행 검증을 하지 않습니다. Windows Power
 Import-Module .\src\CoreKeeper.Common.psm1 -Force
 Import-Module .\src\CoreKeeper.Config.psm1 -Force
 Import-Module .\src\CoreKeeper.Paths.psm1 -Force
+Import-Module .\src\CoreKeeper.Backup.psm1 -Force
 Import-Module .\src\CoreKeeper.SteamCmd.psm1 -Force
 Import-Module .\src\CoreKeeper.Server.psm1 -Force
 Get-CKSettings

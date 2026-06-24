@@ -10,6 +10,8 @@
 - T3 SteamCMD 공통 실행 함수 추가: `app_update 1963720 validate` 실행, output log, exit code 에러 처리 기록
 - T4 수동 서버 운영 추가: `scripts/start-server.ps1`, `scripts/status-server.ps1`, `scripts/stop-server.ps1`, `src/CoreKeeper.Server.psm1` 생성
 - T4 상태 확인 추가: Dedicated Server 데이터 폴더, 실행 후보, 실행 프로세스, Game ID 로그 힌트 확인
+- T5 서버 데이터 백업 추가: `scripts/backup-server.ps1`, `src/CoreKeeper.Backup.psm1` 생성
+- T5 백업 정책 추가: `worlds`, `worldinfos`, `ServerConfig.json` 백업, 누락 대상 skip 메시지, manifest 기록
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

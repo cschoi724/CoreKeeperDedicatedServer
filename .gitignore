@@ -1,0 +1,26 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Local environment and secrets
+.env
+*.local.json
+*.secret.json
+
+# Core Keeper runtime data should not be committed
+automation/server-files/
+automation/server-data/
+automation/backups/
+automation/logs/
+automation/tmp/
+**/GameID.txt
+**/ServerConfig.json
+**/*.world.gzip
+
+# SteamCMD/server downloads
+steamcmd/
+SteamCMD/
+CoreKeeperServer/
+

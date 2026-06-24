@@ -217,7 +217,7 @@ Invoke-ScriptAnalyzer -Path .\scripts -Recurse
 - 비고: 각 커밋 전 확인 완료
 
 - 날짜: 2026-06-24
-- 명령: `rg -n "migrate[-]world|월드[ ]이전|TO""DO" README.md automation/README.md automation/docs`
+- 명령: `rg -n 'migrate[-]world|월드[ ]이전|TODO' README.md automation/README.md automation/docs`
 - 결과: T9 문서 정리 기준 오래된 스크립트명, 오래된 월드 이전 표현, TODO 없음
 - 비고: 루트 저장소 기준으로 실행
 

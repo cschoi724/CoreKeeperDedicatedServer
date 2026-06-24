@@ -20,6 +20,7 @@
 - T8 안전 제한 추가: `HH:mm` 시간 검증, 강제 종료 없는 보수적 예약 작업, 안전 종료 미검증 문서화
 - T9 사용자 문서 정리: `automation/README.md`를 현재 스크립트 이름과 Windows 사용 순서 기준으로 재작성
 - T9 테스트 문서 정리: `docs/TESTING.md`를 Windows 실기 검증 명령 순서, 미검증 항목, 현재 범위 밖 항목 중심으로 재구성
+- Windows Codex 실기 검증 Runbook 추가: Codex 세션 시작, 설치, 실행, 백업, import, Task Scheduler 검증, 결과 커밋 절차 정리
 - 작업 영역 `agents.md` 추가
 - 개발 계획, 상태, 테스트 문서 추가
 - 실제 구현은 보류하고 열린 질문을 문서화

@@ -2,6 +2,8 @@
 
 이 문서는 Windows 노트북에서 실제 검증할 명령 순서를 기록한다. macOS에서는 Windows PowerShell, SteamCMD, Task Scheduler, Core Keeper Dedicated Server 실행 검증을 하지 않는다.
 
+Codex 세션 시작부터 검증 결과 커밋까지의 상세 절차는 `WINDOWS_CODEX_RUNBOOK.md`를 따른다.
+
 ## Windows 실기 검증 순서
 
 모든 명령은 Windows PowerShell 5.1 이상에서 `automation/` 폴더 기준으로 실행한다.

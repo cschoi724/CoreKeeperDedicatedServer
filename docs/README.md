@@ -20,5 +20,6 @@
 
 - `../automation/docs/DEVELOPMENT_PLAN.md`: 자동화 개발 계획
 - `../automation/docs/OPERATIONS_DESIGN.md`: Windows 운영 자동화 설계
+- `../automation/docs/WINDOWS_CODEX_RUNBOOK.md`: Windows Codex 실기 검증 절차
 - `../automation/docs/WORLD_MIGRATION_DESIGN.md`: 기존 월드 import 설계
 - `product/`: 제품 요구사항과 운영 시나리오 문서를 추가할 위치

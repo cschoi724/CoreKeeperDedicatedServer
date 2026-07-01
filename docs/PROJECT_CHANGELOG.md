@@ -18,3 +18,12 @@
 - Windows Codex 실기 검증 Runbook 추가
 - Dedicated Server 플레이어 0명 sleep/대기 동작과 운영 확장 후보 문서화
 - T10을 Windows 실기 검증과 2차 운영 확장용 로그/증거 수집 단계로 명확히 분리
+
+## 2026-07-01
+
+- `.ai/` AI Agent Ops 템플릿 저장소 도입
+- `.ai_project/` 프로젝트별 Agent 운영 구조 초기화
+- 루트 `agents.md`에 AI Ops Agent와 `.ai_project/` 확인 기준 추가
+- `docs/README.md`에 AI Agent 운영 문서 인덱스 추가
+- `docs/SESSION_HANDOFF.md` 내용을 `.ai_project/current_context.md`와 기존 상태 문서로 병합하고 삭제
+- `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md` 역할을 `.ai/` 운영 템플릿으로 대체하고 삭제

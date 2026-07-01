@@ -9,6 +9,9 @@ Thumbs.db
 *.local.json
 *.secret.json
 
+# AI Agent Ops template repository
+.ai/
+
 # Core Keeper runtime data should not be committed
 automation/server-files/
 automation/server-data/
@@ -23,4 +26,3 @@ automation/tmp/
 steamcmd/
 SteamCMD/
 CoreKeeperServer/
-

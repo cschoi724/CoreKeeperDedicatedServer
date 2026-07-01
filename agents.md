@@ -8,10 +8,17 @@
 - 한 줄 설명: 기존 Core Keeper Steam 호스트 월드를 Windows 노트북의 Dedicated Server로 이전하고 상시 운영하기 위한 자동화 템플릿
 - 우선 개발 영역: `automation`
 - 현재 세션 역할: 루트 관리 에이전트
+- AI Agent Ops 적용 상태: `.ai/` 설치 완료, `.ai_project/` 운영 구조 초기화 완료
 - 원격 저장소: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`
 - 문서 언어: 한글
 
 ## 역할
+
+### AI Ops Agent
+
+- `.ai/agents/ai_ops_agent.md`를 기준으로 Agent 운영 구조, 역할 경계, Task Queue, source of truth를 점검합니다.
+- 제품 Task 실행 라인에 참여하지 않고, 운영 이슈는 `.ai_project/ops_issues.md`에 기록합니다.
+- 기존 문서 삭제나 병합은 `.ai_project/ops_migration_plan.md`의 후보와 롤백 기준을 확인한 뒤 사용자 승인 범위에서 진행합니다.
 
 ### 루트 관리 에이전트
 
@@ -29,7 +36,10 @@
 ## 주요 기준 문서
 
 - 리서치 기준: `docs/research/deep-research-report.md`
-- 운영 문서 기준: `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md`
+- AI Agent 운영 템플릿: `.ai/`
+- AI Agent 프로젝트 운영 상태: `.ai_project/`
+- Source of truth 매핑: `.ai_project/source_of_truth.md`
+- 운영 마이그레이션 계획: `.ai_project/ops_migration_plan.md`
 - 프로젝트 상태: `docs/PROJECT_STATUS.md`
 - 결정사항: `docs/PROJECT_DECISIONS.md`
 - Git 전략: `docs/GIT_WORKFLOW.md`
@@ -60,10 +70,14 @@
 - 의미 있는 단위로 커밋합니다.
 - 커밋 메시지는 `type: 설명` 형식을 사용합니다.
 - 자세한 전략은 `docs/GIT_WORKFLOW.md`를 따릅니다.
+- `.ai/`는 별도 템플릿 저장소이므로 현재 프로젝트 Git에 포함하지 않습니다.
+- `.ai_project/`는 프로젝트별 Agent 운영 문서이므로 기본적으로 현재 프로젝트 Git에 포함합니다.
 
 ## 세션 시작 체크리스트
 
 - [ ] `git status -sb` 확인, 저장소가 아니면 그 사실을 상태 문서에 반영
+- [ ] `.ai_project/current_context.md` 확인
+- [ ] `.ai_project/source_of_truth.md` 확인
 - [ ] 루트 `agents.md` 확인
 - [ ] 관련 작업 영역 `agents.md` 확인
 - [ ] `docs/PROJECT_STATUS.md` 확인

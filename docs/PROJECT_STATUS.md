@@ -4,7 +4,7 @@
 
 - 프로젝트 단계: M0 문서 기반 준비
 - 우선 개발 영역: `automation`
-- 최신 기준 문서: `docs/research/deep-research-report.md`, `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md`
+- 최신 기준 문서: `docs/research/deep-research-report.md`, `.ai_project/source_of_truth.md`, `.ai/`
 - 현재 주요 이슈:
   - 실제 구현은 아직 시작하지 않음
   - macOS에서 문서 구조만 세팅하고, 실제 실행 환경은 Windows 노트북으로 전제
@@ -12,6 +12,7 @@
   - 원격 저장소 push 완료됨
   - Steam 전용 접속으로 방향 확정됨
   - 기본 서버 월드는 빈 월드로 시작하고, 기존 월드는 선택적으로 가져오는 방향으로 확정됨
+  - AI Agent Ops 운영 구조가 `.ai_project/`로 초기화됨
 
 ## 목표
 
@@ -54,6 +55,8 @@ Steam에서 직접 호스트하던 기존 Core Keeper 월드를 Dedicated Server
 - 2026-06-24: Steam 전용 SDR(Game ID) 운영과 기본 빈 월드/기존 월드 import 방향을 확정함.
 - 2026-06-24: 설치/백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작, 기본 빈 월드 방향을 확정함.
 - 2026-06-24: 자동화 개발 계획을 T1-T10 실행 단위로 구체화함.
+- 2026-07-01: `.ai/` 템플릿을 도입하고 `.ai_project/` 운영 구조를 초기화함.
+- 2026-07-01: 기존 인수인계/범용 Codex 템플릿 문서를 AI Ops 구조로 병합하고 삭제함.
 
 ## 열린 질문
 

@@ -1,7 +1,7 @@
 # Project Agent Registry
 
 작성일: 2026-07-01
-프로젝트: Core Keeper Dedicated Server Automation Template
+프로젝트: Steam Game Server Manager
 
 ## 1. 목적
 

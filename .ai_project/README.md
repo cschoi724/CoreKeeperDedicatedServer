@@ -1,7 +1,7 @@
 # AI Project Workspace
 
 작성일: 2026-07-01
-프로젝트: Core Keeper Dedicated Server Automation Template
+프로젝트: Steam Game Server Manager
 상태: Draft
 
 ## 1. 목적
@@ -43,3 +43,4 @@
 |---|---|
 | 2026-07-01 | `.ai_project/` 초기화 |
 | 2026-07-01 | 기존 프로젝트 문서 source of truth 연결 기준 추가 |
+| 2026-07-02 | 프로젝트 표기를 Steam Game Server Manager 기준으로 갱신 |

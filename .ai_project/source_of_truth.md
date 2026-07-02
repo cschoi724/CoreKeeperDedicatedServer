@@ -1,7 +1,7 @@
 # Source Of Truth
 
 작성일: 2026-07-01
-프로젝트: Core Keeper Dedicated Server Automation Template
+프로젝트: Steam Game Server Manager
 상태: Draft
 
 ## 1. 목적
@@ -14,8 +14,8 @@
 
 | 항목 | 값 |
 |---|---|
-| 제품/서비스명 | Core Keeper Dedicated Server Automation Template |
-| 개발 대상 | Windows 노트북용 Core Keeper Dedicated Server 자동화 템플릿 |
+| 제품/서비스명 | Steam Game Server Manager |
+| 개발 대상 | Windows 노트북용 Steam Dedicated Server 관리 플랫폼 |
 | 주 기술스택 | PowerShell, SteamCMD, Windows Task Scheduler |
 | 저장소 | `https://github.com/cschoi724/CoreKeeperDedicatedServer.git` |
 | 기본 브랜치 | `main` |
@@ -34,6 +34,8 @@
 | Git 운영 | `docs/GIT_WORKFLOW.md` | `.ai/commit_policy.md` | 프로젝트 Git 정책은 `docs/GIT_WORKFLOW.md`, Agent 커밋 절차는 `.ai/commit_policy.md` |
 | 우선 개발 영역 지시 | `agents.md` | `.ai_project/current_context.md` | 프로젝트 기존 역할은 `agents.md`, AI Ops 활성 상태는 `.ai_project/agent_registry.md` |
 | 자동화 개발 계획 | `automation/docs/DEVELOPMENT_PLAN.md` | `.ai_project/tasks/`, `.ai_project/task_board.md` | 계획 내용은 기존 문서, 실행 Task는 `.ai_project/tasks/` |
+| 자동화 리팩터링 계획 | `automation/docs/REFACTORING_PLAN.md` | `automation/docs/DEVELOPMENT_PLAN.md` | 단계별 Core/Adapter 전환은 리팩터링 계획 우선 |
+| 자동화 마이그레이션 전략 | `automation/docs/MIGRATION_STRATEGY.md` | `automation/docs/DEVELOPMENT_PLAN.md` | 호환성, 설정 전환, 롤백 기준은 마이그레이션 전략 우선 |
 | 자동화 현재 상태 | `automation/docs/STATUS.md` | `docs/PROJECT_STATUS.md`, `.ai_project/current_context.md` | 구현 상태는 `automation/docs/STATUS.md` 우선 |
 | 자동화 결정 | `automation/docs/DECISIONS.md` | `docs/PROJECT_DECISIONS.md` | 영역별 상세 결정은 `automation/docs/DECISIONS.md`, 프로젝트 전체 결정은 `docs/PROJECT_DECISIONS.md` |
 | 자동화 검증 기준 | `automation/docs/TESTING.md` | `.ai_project/qa/` | 검증 절차는 `automation/docs/TESTING.md`, 실행 결과는 `.ai_project/qa/` |
@@ -101,3 +103,4 @@ automation/docs/
 | 날짜 | 변경 내용 |
 |---|---|
 | 2026-07-01 | Source Of Truth 문서 초기화 |
+| 2026-07-02 | 프로젝트 표기를 Steam Game Server Manager 기준으로 갱신 |

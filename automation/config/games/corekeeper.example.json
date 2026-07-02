@@ -1,0 +1,8 @@
+{
+  "gameId": "corekeeper",
+  "serverInstallPath": "C:\\GameServers\\CoreKeeper",
+  "backupRoot": "D:\\Backups\\GameServers\\CoreKeeper",
+  "worldIndex": 0,
+  "taskName": "GameServer-CoreKeeper",
+  "restartTaskName": "GameServer-CoreKeeper-Restart"
+}

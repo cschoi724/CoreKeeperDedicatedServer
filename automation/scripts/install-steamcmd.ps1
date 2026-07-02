@@ -1,5 +1,6 @@
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $true)]
 param(
+    [string]$Game = "corekeeper",
     [string]$SettingsPath
 )
 
@@ -8,21 +9,19 @@ $ErrorActionPreference = "Stop"
 
 $automationRoot = Split-Path -Parent $PSScriptRoot
 $commonModule = Join-Path $automationRoot "src\CoreKeeper.Common.psm1"
-$configModule = Join-Path $automationRoot "src\CoreKeeper.Config.psm1"
-$pathsModule = Join-Path $automationRoot "src\CoreKeeper.Paths.psm1"
-$steamCmdModule = Join-Path $automationRoot "src\CoreKeeper.SteamCmd.psm1"
+$configManagerModule = Join-Path $automationRoot "src\Core\ConfigManager.psm1"
+$steamCmdManagerModule = Join-Path $automationRoot "src\Core\SteamCmdManager.psm1"
 
 Import-Module $commonModule -Force
-Import-Module $configModule -Force
-Import-Module $pathsModule -Force
-Import-Module $steamCmdModule -Force
+Import-Module $configManagerModule -Force
+Import-Module $steamCmdManagerModule -Force
 
 if ([string]::IsNullOrWhiteSpace($SettingsPath)) {
-    $settings = Get-CKSettings
+    $settings = Get-GameServerSettings -Game $Game
 }
 else {
-    $settings = Get-CKSettings -LocalPath $SettingsPath
+    $settings = Get-GameServerSettings -Game $Game -LegacyLocalPath $SettingsPath
 }
 
-$steamCmdExe = Install-CKSteamCmd -Settings $settings
+$steamCmdExe = Install-GameServerSteamCmd -Game $Game -Settings $settings -WhatIf:$WhatIfPreference
 Write-CKInfo "Ready: $steamCmdExe"

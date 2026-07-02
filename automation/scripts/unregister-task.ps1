@@ -1,5 +1,6 @@
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $true)]
 param(
+    [string]$Game = "corekeeper",
     [string]$SettingsPath
 )
 
@@ -8,18 +9,18 @@ $ErrorActionPreference = "Stop"
 
 $automationRoot = Split-Path -Parent $PSScriptRoot
 $commonModule = Join-Path $automationRoot "src\CoreKeeper.Common.psm1"
-$configModule = Join-Path $automationRoot "src\CoreKeeper.Config.psm1"
-$tasksModule = Join-Path $automationRoot "src\CoreKeeper.Tasks.psm1"
+$configModule = Join-Path $automationRoot "src\Core\ConfigManager.psm1"
+$tasksModule = Join-Path $automationRoot "src\Core\SchedulerManager.psm1"
 
 Import-Module $commonModule -Force
 Import-Module $configModule -Force
 Import-Module $tasksModule -Force
 
 if ([string]::IsNullOrWhiteSpace($SettingsPath)) {
-    $settings = Get-CKSettings
+    $settings = Get-GameServerSettings -Game $Game
 }
 else {
-    $settings = Get-CKSettings -LocalPath $SettingsPath
+    $settings = Get-GameServerSettings -Game $Game -LegacyLocalPath $SettingsPath
 }
 
-Unregister-CKServerStartupTask -Settings $settings | Out-Null
+Unregister-GameServerStartupTask -Game $Game -Settings $settings -WhatIf:$WhatIfPreference | Out-Null

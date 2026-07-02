@@ -1,5 +1,6 @@
 [CmdletBinding()]
 param(
+    [string]$Game = "corekeeper",
     [string]$SettingsPath
 )
 
@@ -8,29 +9,27 @@ $ErrorActionPreference = "Stop"
 
 $automationRoot = Split-Path -Parent $PSScriptRoot
 $commonModule = Join-Path $automationRoot "src\CoreKeeper.Common.psm1"
-$configModule = Join-Path $automationRoot "src\CoreKeeper.Config.psm1"
-$pathsModule = Join-Path $automationRoot "src\CoreKeeper.Paths.psm1"
-$serverModule = Join-Path $automationRoot "src\CoreKeeper.Server.psm1"
+$configModule = Join-Path $automationRoot "src\Core\ConfigManager.psm1"
+$serverModule = Join-Path $automationRoot "src\Core\ServerManager.psm1"
 
 Import-Module $commonModule -Force
 Import-Module $configModule -Force
-Import-Module $pathsModule -Force
 Import-Module $serverModule -Force
 
 if ([string]::IsNullOrWhiteSpace($SettingsPath)) {
-    $settings = Get-CKSettings
+    $settings = Get-GameServerSettings -Game $Game
 }
 else {
-    $settings = Get-CKSettings -LocalPath $SettingsPath
+    $settings = Get-GameServerSettings -Game $Game -LegacyLocalPath $SettingsPath
 }
 
-$processes = @(Get-CKServerProcesses -Settings $settings)
+$processes = @(Get-GameServerProcesses -Game $Game -Settings $settings)
 if ($processes.Count -eq 0) {
-    Write-CKInfo "No likely Core Keeper Dedicated Server process was found."
+    Write-CKInfo "No likely $($settings['displayName']) Dedicated Server process was found."
     return
 }
 
-Write-Host "Likely Core Keeper Dedicated Server processes:"
+Write-Host "Likely $($settings['displayName']) Dedicated Server processes:"
 $processes | Select-Object Id, ProcessName, Path | Format-Table -AutoSize
 Write-CKWarn "Safe shutdown command is not verified yet. This script does not force-stop the server."
 Write-Host "Stop the server from its console/window using the official safe shutdown flow, then run .\scripts\status-server.ps1 again."

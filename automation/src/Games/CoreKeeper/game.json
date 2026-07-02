@@ -1,0 +1,51 @@
+{
+  "gameId": "corekeeper",
+  "displayName": "Core Keeper",
+  "steam": {
+    "appId": "1963720",
+    "login": "anonymous"
+  },
+  "paths": {
+    "defaultInstallPath": "C:\\GameServers\\CoreKeeper",
+    "defaultBackupRoot": "D:\\Backups\\GameServers\\CoreKeeper",
+    "dataRoot": "%USERPROFILE%\\AppData\\LocalLow\\Pugstorm\\Core Keeper\\DedicatedServer"
+  },
+  "server": {
+    "launchCandidates": [
+      "Launch.bat",
+      "LaunchServer.bat",
+      "StartServer.bat",
+      "CoreKeeperServer.exe",
+      "Core Keeper Dedicated Server.exe"
+    ],
+    "processNamePatterns": [
+      "CoreKeeper",
+      "Core Keeper",
+      "Dedicated"
+    ],
+    "arguments": []
+  },
+  "backup": {
+    "targets": [
+      { "name": "worlds", "path": "worlds", "type": "directory" },
+      { "name": "worldinfos", "path": "worldinfos", "type": "directory" },
+      { "name": "ServerConfig.json", "path": "ServerConfig.json", "type": "file" }
+    ]
+  },
+  "logs": {
+    "directories": [],
+    "statusPatterns": [
+      "Game ID",
+      "GameID",
+      "game id",
+      "join code",
+      "Join Code"
+    ]
+  },
+  "features": {
+    "worldImport": true,
+    "configPatch": true,
+    "gracefulStop": false,
+    "healthCheck": false
+  }
+}

@@ -1,3 +1,5 @@
 config/settings.local.json
+config/manager.local.json
+config/games/*.local.json
 *.tmp
 *.log

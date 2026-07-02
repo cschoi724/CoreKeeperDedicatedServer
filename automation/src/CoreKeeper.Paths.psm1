@@ -1,8 +1,8 @@
 Set-StrictMode -Version 2.0
 
-$commonModule = Join-Path $PSScriptRoot "CoreKeeper.Common.psm1"
+$pathManagerModule = Join-Path (Join-Path $PSScriptRoot "Core") "PathManager.psm1"
 $configModule = Join-Path $PSScriptRoot "CoreKeeper.Config.psm1"
-Import-Module $commonModule -Force
+Import-Module $pathManagerModule -Force
 Import-Module $configModule -Force
 
 function Get-CKPathSet {
@@ -15,16 +15,20 @@ function Get-CKPathSet {
         $Settings = Get-CKSettings
     }
 
-    return @{
-        AutomationRoot = Get-CKAutomationRoot
-        ServerInstallPath = [string]$Settings["serverInstallPath"]
-        SteamCmdPath = [string]$Settings["steamCmdPath"]
-        SteamCmdExe = Join-Path ([string]$Settings["steamCmdPath"]) "steamcmd.exe"
-        BackupRoot = [string]$Settings["backupRoot"]
-        DedicatedServerDataRoot = Join-Path $env:USERPROFILE "AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServer"
-        WorldsPath = Join-Path (Join-Path $env:USERPROFILE "AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServer") "worlds"
-        WorldInfosPath = Join-Path (Join-Path $env:USERPROFILE "AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServer") "worldinfos"
-        ServerConfigPath = Join-Path (Join-Path $env:USERPROFILE "AppData\LocalLow\Pugstorm\Core Keeper\DedicatedServer") "ServerConfig.json"
+    $paths = Get-GameServerPathSet -Game "corekeeper" -Settings $Settings
+    $dataRoot = [string]$paths.DedicatedServerDataRoot
+
+    return [pscustomobject][ordered]@{
+        AutomationRoot = $paths.AutomationRoot
+        GameId = $paths.GameId
+        ServerInstallPath = $paths.ServerInstallPath
+        SteamCmdPath = $paths.SteamCmdPath
+        SteamCmdExe = $paths.SteamCmdExe
+        BackupRoot = $paths.BackupRoot
+        DedicatedServerDataRoot = $paths.DedicatedServerDataRoot
+        WorldsPath = Join-Path $dataRoot "worlds"
+        WorldInfosPath = Join-Path $dataRoot "worldinfos"
+        ServerConfigPath = Join-Path $dataRoot "ServerConfig.json"
     }
 }
 
@@ -38,11 +42,8 @@ function Initialize-CKRequiredDirectories {
         $Settings = Get-CKSettings
     }
 
-    $paths = Get-CKPathSet -Settings $Settings
-    New-CKDirectory -Path $paths.ServerInstallPath
-    New-CKDirectory -Path $paths.SteamCmdPath
-    New-CKDirectory -Path $paths.BackupRoot
-    return $paths
+    Initialize-GameServerRequiredDirectories -Game "corekeeper" -Settings $Settings | Out-Null
+    return Get-CKPathSet -Settings $Settings
 }
 
 function Test-CKRequiredPaths {
@@ -55,16 +56,7 @@ function Test-CKRequiredPaths {
         $Settings = Get-CKSettings
     }
 
-    $paths = Get-CKPathSet -Settings $Settings
-    $result = [ordered]@{
-        ServerInstallPath = Test-Path -LiteralPath $paths.ServerInstallPath -PathType Container
-        SteamCmdPath = Test-Path -LiteralPath $paths.SteamCmdPath -PathType Container
-        SteamCmdExe = Test-Path -LiteralPath $paths.SteamCmdExe -PathType Leaf
-        BackupRoot = Test-Path -LiteralPath $paths.BackupRoot -PathType Container
-        DedicatedServerDataRoot = Test-Path -LiteralPath $paths.DedicatedServerDataRoot -PathType Container
-    }
-
-    return [pscustomobject]$result
+    return Test-GameServerRequiredPaths -Game "corekeeper" -Settings $Settings
 }
 
 Export-ModuleMember -Function Get-CKPathSet, Initialize-CKRequiredDirectories, Test-CKRequiredPaths

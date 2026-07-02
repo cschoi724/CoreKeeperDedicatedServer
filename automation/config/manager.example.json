@@ -1,0 +1,6 @@
+{
+  "defaultGame": "corekeeper",
+  "steamCmdPath": "C:\\GameServers\\steamcmd",
+  "serverRoot": "C:\\GameServers",
+  "backupRoot": "D:\\Backups\\GameServers"
+}

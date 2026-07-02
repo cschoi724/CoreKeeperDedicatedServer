@@ -1,4 +1,4 @@
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $true)]
 param(
     [Parameter(Mandatory = $true)]
     [string]$WorldFile,
@@ -7,6 +7,8 @@ param(
     [int]$WorldIndex = 0,
 
     [switch]$ConfirmOverwrite,
+
+    [string]$Game = "corekeeper",
 
     [string]$SettingsPath
 )
@@ -36,6 +38,6 @@ else {
     $settings = Get-CKSettings -LocalPath $SettingsPath
 }
 
-$result = Import-CKWorldFile -WorldFile $WorldFile -WorldIndex $WorldIndex -ConfirmOverwrite:$ConfirmOverwrite -Settings $settings
+$result = Import-CKWorldFile -Game $Game -WorldFile $WorldFile -WorldIndex $WorldIndex -ConfirmOverwrite:$ConfirmOverwrite -Settings $settings -WhatIf:$WhatIfPreference
 Write-CKInfo "World import completed: $($result.Destination)"
 Write-CKInfo "Backup created before import: $($result.BackupPath)"

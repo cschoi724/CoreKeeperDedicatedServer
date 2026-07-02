@@ -1,15 +1,15 @@
-# Core Keeper Dedicated Server Automation agents.md
+# Steam Game Server Manager agents.md
 
 이 문서는 저장소 최상위 인수인계 문서입니다.
 
 ## 프로젝트 개요
 
-- 프로젝트 이름: Core Keeper Dedicated Server Automation Template
-- 한 줄 설명: 기존 Core Keeper Steam 호스트 월드를 Windows 노트북의 Dedicated Server로 이전하고 상시 운영하기 위한 자동화 템플릿
+- 프로젝트 이름: Steam Game Server Manager
+- 한 줄 설명: SteamCMD 기반 Steam 게임 Dedicated Server를 Windows 노트북에서 설치, 업데이트, 실행, 백업, 스케줄링하기 위한 관리 플랫폼
 - 우선 개발 영역: `automation`
 - 현재 세션 역할: 루트 관리 에이전트
 - AI Agent Ops 적용 상태: `.ai/` 설치 완료, `.ai_project/` 운영 구조 초기화 완료
-- 원격 저장소: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git`
+- 원격 저장소: `https://github.com/cschoi724/CoreKeeperDedicatedServer.git` (저장소명은 기존 이력 호환으로 유지)
 - 문서 언어: 한글
 
 ## 역할
@@ -29,7 +29,7 @@
 
 ### 작업 영역 개발 에이전트
 
-- `automation/` 폴더 안에서 실제 Windows 자동화 템플릿 구현을 담당합니다.
+- `automation/` 폴더 안에서 실제 Windows 자동화 플랫폼 구현을 담당합니다.
 - `automation/agents.md`를 우선 따릅니다.
 - 작업 종료 전 상태, 계획, 테스트, 변경 기록을 갱신합니다.
 

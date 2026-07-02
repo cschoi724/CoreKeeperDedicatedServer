@@ -2,6 +2,21 @@
 
 ## 확정된 결정
 
+### 2026-07-01: 제품 방향을 Steam Game Server Manager로 전환
+
+- 결정: 프로젝트 목표를 Core Keeper 전용 데디케이티드 서버 자동화 템플릿에서 Steam 게임 데디케이티드 서버 관리 플랫폼으로 전환한다.
+- 근거: 사용자가 Core Keeper뿐 아니라 다양한 Steam 게임 Dedicated Server를 동일한 방식으로 운영하고 싶다고 요청함.
+- 영향: Core Keeper는 제거하지 않고 첫 번째 게임 Adapter와 회귀 검증 기준으로 유지한다.
+- 구현 원칙: Big Bang Rewrite를 지양하고, 기존 Core Keeper 기능을 유지한 채 Core/Adapter 구조로 점진 전환한다.
+- 기준 문서: `automation/docs/DEVELOPMENT_PLAN.md`, `automation/docs/REFACTORING_PLAN.md`, `automation/docs/MIGRATION_STRATEGY.md`
+
+### 2026-07-01: Core/Adapter 구조를 목표 아키텍처로 채택
+
+- 결정: SteamCMD, 설치/업데이트, 실행/종료, 백업, 로그, 모니터링, 스케줄링은 공통 Core로 분리하고, AppID/실행 파일/데이터 경로/백업 대상/월드 import/Health Check는 게임별 Adapter로 분리한다.
+- 근거: Steam Dedicated Server 운영 패턴은 공통 기능이 많고, 게임별 차이는 일부 설정과 규칙에 집중되어 있음.
+- 영향: 신규 게임은 `Games/<GameId>/` Adapter 추가만으로 지원하는 구조를 목표로 한다.
+- 보류: Adapter manifest schema의 최종 필드와 두 번째 skeleton Adapter 후보는 후속 Task에서 확정한다.
+
 ### 2026-06-24: 루트 관리 세션과 구현 세션을 분리
 
 - 결정: 현재 세션은 루트 관리 에이전트로 문서 구조와 작업 분리만 수행한다.

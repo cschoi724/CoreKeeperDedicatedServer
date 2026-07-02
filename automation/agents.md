@@ -1,22 +1,24 @@
 # automation agents.md
 
-이 문서는 Windows Core Keeper Dedicated Server 자동화 템플릿 개발 에이전트가 추가 컨텍스트 없이 작업하기 위한 기준입니다.
+이 문서는 Steam Game Server Manager의 Windows 자동화 영역 개발 에이전트가 추가 컨텍스트 없이 작업하기 위한 기준입니다.
 
 ## 역할
 
-- `automation/` 폴더 안의 실제 자동화 템플릿 구현을 담당합니다.
+- `automation/` 폴더 안의 실제 Steam Dedicated Server 관리 자동화 구현을 담당합니다.
 - 루트 제품 문서와 루트 `agents.md`를 참고합니다.
 - 구현 판단은 이 작업 영역 문서를 우선합니다.
 - 작업 종료 전 문서를 갱신합니다.
 
 ## 작업 목표
 
-Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Server 설치/업데이트/월드 import/백업/선택 자동 실행을 재현 가능하게 수행하는 템플릿을 만든다.
+Windows 노트북에서 이 저장소를 clone한 뒤, SteamCMD 기반 게임 Dedicated Server의 설치/업데이트/실행/백업/선택 자동 실행을 재현 가능하게 수행하는 플랫폼을 만든다.
+
+Core Keeper는 첫 번째 공식 Adapter이자 회귀 검증 기준으로 유지한다.
 
 ## 현재 범위
 
 - 현재 세션에서는 구현하지 않음
-- 다음 개발 세션에서 PowerShell/Batch 기반 실제 템플릿 작성 예정
+- 다음 개발 세션에서 PowerShell 기반 실제 플랫폼 작업 예정
 - macOS에서 서버 실행 검증 금지
 
 ## 참고 문서
@@ -39,11 +41,11 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 ## 개발 원칙
 
 - Windows PowerShell을 기본 자동화 언어 후보로 둔다.
-- 서버 설치는 SteamCMD + App ID `1963720` 후보를 우선 검토한다.
-- 기본 접속 방식은 SDR(Game ID)로 둔다.
+- 서버 설치는 SteamCMD 기반 공통 Core와 게임별 Adapter manifest를 기준으로 한다.
+- Core Keeper Adapter의 기본 접속 방식은 SDR(Game ID)로 둔다.
 - Direct Connect, 방화벽, 포트포워딩은 현재 구현 범위에서 제외하고 추후 선택 기능 후보로만 남긴다.
-- 서버 기본 월드는 새 빈 월드로 둔다.
-- 기존 월드는 사용자가 별도 파일로 가져올 때만 import한다.
+- Core Keeper Adapter의 기본 월드는 새 빈 월드로 둔다.
+- Core Keeper 기존 월드는 사용자가 별도 파일로 가져올 때만 import한다.
 - 사용자 월드 파일을 덮어쓰기 전 반드시 백업과 확인 단계를 둔다.
 - 기본 실행은 수동 실행이다.
 - 자동 실행과 특정 시간 재시작은 온/오프 가능한 선택 기능으로 구현한다.
@@ -52,10 +54,10 @@ Windows 노트북에서 이 저장소를 clone한 뒤, Core Keeper Dedicated Ser
 
 ## 구현 전 필수 확인
 
-- 최신 Core Keeper Dedicated Server Windows 실행 방식
-- SteamCMD anonymous 설치 가능 여부
-- `ServerConfig.json` 최신 구조
-- 기존 월드 저장 경로와 Dedicated Server 저장 경로
-- Game ID 확인 방식
+- Adapter별 Dedicated Server Windows 실행 방식
+- SteamCMD anonymous 또는 게임별 로그인 방식 가능 여부
+- Adapter별 설정 파일 구조
+- Adapter별 월드/세이브 저장 경로와 Dedicated Server 데이터 경로
+- Adapter별 상태 확인 방식
 - Task Scheduler 등록 권한 요구사항
-- 안전한 서버 종료 방식
+- Adapter별 안전한 서버 종료 방식

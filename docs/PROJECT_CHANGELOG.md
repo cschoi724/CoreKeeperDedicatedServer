@@ -27,3 +27,12 @@
 - `docs/README.md`에 AI Agent 운영 문서 인덱스 추가
 - `docs/SESSION_HANDOFF.md` 내용을 `.ai_project/current_context.md`와 기존 상태 문서로 병합하고 삭제
 - `docs/templates/CODEX_PROJECT_RULES_TEMPLATE.md` 역할을 `.ai/` 운영 템플릿으로 대체하고 삭제
+- 제품 방향을 Steam Game Server Manager로 전환
+- `automation/docs/DEVELOPMENT_PLAN.md`를 Core/Adapter 구조 기준으로 전면 개정
+- `automation/docs/REFACTORING_PLAN.md`, `automation/docs/MIGRATION_STRATEGY.md` 추가
+- 범용 플랫폼 전환 실행 Task Queue를 `proposed` 상태로 등록
+
+## 2026-07-02
+
+- GSM-R1~GSM-R7 Core/Adapter 전환 작업과 QA 재검증 결과를 운영 문서에 반영
+- 루트/자동화 Agent 지침과 상태 문서의 프로젝트 표기를 Steam Game Server Manager 기준으로 정리

@@ -1,0 +1,7 @@
+{
+  "gameId": "valheim",
+  "serverInstallPath": "C:\\GameServers\\Valheim",
+  "backupRoot": "D:\\Backups\\GameServers\\Valheim",
+  "taskName": "GameServer-Valheim",
+  "restartTaskName": "GameServer-Valheim-Restart"
+}

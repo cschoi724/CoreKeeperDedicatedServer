@@ -32,3 +32,38 @@
 - 기본 빈 월드/기존 월드 import 설계 문서 추가
 - 설치/백업 경로, SteamCMD 자동 설치, 기본 수동 실행, 선택 자동 실행/재시작, 기본 빈 월드/import 방향 반영
 - 개발 계획을 T1-T10 작업 단위, 산출 파일, 완료 조건, 검증 명령, 권장 커밋 단위로 구체화
+
+## 2026-07-01
+
+- 제품 방향을 기존 Core Keeper 중심 자동화 템플릿에서 Steam Game Server Manager로 전환
+- `DEVELOPMENT_PLAN.md`를 Core/Adapter 아키텍처 기준으로 전면 개정
+- `REFACTORING_PLAN.md` 추가: GSM-R0~GSM-R8 단계별 리팩터링 계획 수립
+- `MIGRATION_STRATEGY.md` 추가: 기존 Core Keeper 기능 호환, 설정 fallback, 롤백 전략 수립
+- `.ai_project/tasks/`에 방향 전환과 단계별 구현 Task를 `proposed` 상태로 등록
+
+## 2026-07-02
+
+- GSM-R1 Adapter 아키텍처 문서 추가: `ARCHITECTURE.md`에서 Core/Adapter 책임, 설정 계층, 호환 계층, 오류 처리 기준 정의
+- GSM-R1 Adapter 작성 가이드 추가: `ADAPTER_GUIDE.md`에서 manifest schema 초안, 필수/선택 PowerShell 함수 계약, 신규 Adapter 추가 절차 정의
+- GSM-R1 QA 재작업: `DEVELOPMENT_PLAN.md`의 manifest 로그/feature 필드를 `ADAPTER_GUIDE.md`의 `statusPatterns`, `gracefulStop`, `healthCheck` 계약과 일치시킴
+- GSM-R2 Core Keeper Adapter manifest 도입: `config/manager.example.json`, `config/games/corekeeper.example.json`, `src/Games/CoreKeeper/game.json`, `src/Core/AdapterManager.psm1` 추가
+- 로컬 manager/game 설정 파일이 커밋되지 않도록 `automation/.gitignore`에 `manager.local.json`, `games/*.local.json` 패턴 추가
+- GSM-R3 Config/Path Core 분리: `src/Core/ConfigManager.psm1`, `src/Core/PathManager.psm1` 추가
+- 기존 `CoreKeeper.Config.psm1`, `CoreKeeper.Paths.psm1`는 기존 함수명을 유지하는 compatibility wrapper로 전환
+- 설정 우선순위를 `MIGRATION_STRATEGY.md`에 기록하고 `settings.local.json` fallback 유지
+- GSM-R3 QA 재작업: Core `PathManager.psm1`에서 Core Keeper 전용 `worlds`, `worldinfos`, `ServerConfig.json` 경로 계산을 제거하고 `CoreKeeper.Paths.psm1` wrapper로 이동
+- GSM-R4 SteamCMD Core 분리: `src/Core/SteamCmdManager.psm1` 추가, 기존 `CoreKeeper.SteamCmd.psm1`는 wrapper로 전환
+- `install-steamcmd.ps1`, `install-server.ps1`, `update-server.ps1`에 `-Game corekeeper` 기본값과 `-WhatIf` 지원 추가
+- SteamCMD `app_update` 명령의 AppID와 login 값을 Adapter 기반 설정에서 읽도록 변경
+- GSM-R5 Server/Backup/Scheduler Core 분리: `src/Core/ServerManager.psm1`, `src/Core/BackupManager.psm1`, `src/Core/SchedulerManager.psm1` 추가
+- 기존 `CoreKeeper.Server.psm1`, `CoreKeeper.Backup.psm1`, `CoreKeeper.Tasks.psm1`는 wrapper로 전환
+- `start/status/backup/task` 계열 스크립트에 `-Game corekeeper` 기본값 추가, 백업/스케줄러 계열에 `-WhatIf` 전달 추가
+- GSM-R5 QA 재작업: `CoreKeeper.Server.psm1` wrapper에서 `Get-CKPathSet` 의존성을 충족하도록 `CoreKeeper.Paths.psm1` import 추가
+- GSM-R6 Core Keeper 월드 import Adapter 격리: `src/Games/CoreKeeper/CoreKeeper.Adapter.psm1` 추가, `.world.gzip` 검증과 `ServerConfig.json` world index 패치 로직 이동
+- `import-world.ps1`에 `-Game corekeeper` 기본값과 `-WhatIf` 전달을 추가하고 `CoreKeeper.World.psm1`를 Adapter dispatcher/wrapper로 전환
+- GSM-R7 테스트/Runbook 재정렬: `README.md`, `docs/TESTING.md`, `docs/WINDOWS_CODEX_RUNBOOK.md`를 Steam Game Server Manager 기준으로 갱신
+- Windows 검증 기준을 공통 Core 검증과 Core Keeper Adapter 회귀 검증으로 분리하고 T10 증거 수집 항목을 새 구조에 맞게 정리
+- GSM-R7 QA 재작업: `New-GameServerSteamCmdAppUpdateArguments` 문서 예제를 실제 `-Settings` 함수 계약에 맞게 수정
+- T-20260702-002 네이밍 정리: 루트/자동화 Agent 지침, 상태 문서, AI 운영 문서의 프로젝트 표기를 Steam Game Server Manager 기준으로 갱신
+- GSM-R8 두 번째 게임 skeleton Adapter 추가: `src/Games/Valheim/game.json`, `config/games/valheim.example.json` 추가
+- Valheim skeleton은 manifest discovery 검증용으로 추가했으며 world import, config patch, graceful stop, health check는 unsupported로 명시

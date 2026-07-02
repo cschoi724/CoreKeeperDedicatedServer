@@ -1,0 +1,40 @@
+{
+  "gameId": "valheim",
+  "displayName": "Valheim",
+  "steam": {
+    "appId": "896660",
+    "login": "anonymous"
+  },
+  "paths": {
+    "defaultInstallPath": "C:\\GameServers\\Valheim",
+    "defaultBackupRoot": "D:\\Backups\\GameServers\\Valheim",
+    "dataRoot": "%USERPROFILE%\\AppData\\LocalLow\\IronGate\\Valheim"
+  },
+  "server": {
+    "launchCandidates": [
+      "start_headless_server.bat",
+      "valheim_server.exe"
+    ],
+    "processNamePatterns": [
+      "valheim_server",
+      "Valheim"
+    ],
+    "arguments": []
+  },
+  "backup": {
+    "targets": [
+      { "name": "worlds", "path": "worlds", "type": "directory" },
+      { "name": "worlds_local", "path": "worlds_local", "type": "directory" }
+    ]
+  },
+  "logs": {
+    "directories": [],
+    "statusPatterns": []
+  },
+  "features": {
+    "worldImport": false,
+    "configPatch": false,
+    "gracefulStop": false,
+    "healthCheck": false
+  }
+}

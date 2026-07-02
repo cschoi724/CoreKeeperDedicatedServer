@@ -2,12 +2,12 @@
 
 ## 현재 상태
 
-- 상태: T1-T9 완료, Windows 실기 검증 필요
+- 상태: Steam Game Server Manager Core/Adapter 전환 GSM-R8 Valheim skeleton Adapter 추가 완료
 - 개발 환경: macOS에서 문서 작성, 실제 실행 대상은 Windows 노트북
 - 검증 명령: 문서 파일 목록 확인, `git status -sb`, `command -v pwsh`, `git diff --cached --check`
-- 접속 방식: Steam 전용 SDR(Game ID)
-- 서버 설치 경로: `C:\CoreKeeperServer`
-- 백업 경로: `D:\Backups\CoreKeeper`
+- 접속 방식: Core Keeper Adapter는 Steam 전용 SDR(Game ID) 기준 유지
+- 서버 설치 경로: 기존 Core Keeper 기본값 `C:\CoreKeeperServer` 호환 유지, 신규 구조 기본값은 `C:\GameServers\<GameId>` 후보
+- 백업 경로: 기존 Core Keeper 기본값 `D:\Backups\CoreKeeper` 호환 유지, 신규 구조 기본값은 `D:\Backups\GameServers\<GameId>` 후보
 - SteamCMD 설치: 템플릿에서 자동 설치
 - 실행 방식: 기본 수동 실행
 - 자동 실행: 선택 기능, 온/오프 가능
@@ -17,11 +17,9 @@
 
 ## 다음 작업
 
-1. T10 Windows 실기 검증 진행
-2. Windows 노트북에서 T1-T9 문서 절차대로 모듈 import, SteamCMD 설치, 서버 설치/업데이트, 수동 시작/상태 확인, 백업, 월드 import, 자동 실행/재시작 예약 작업 관리를 검증
-3. T10에서 서버 실행 파일명, Game ID 출력 위치, 데이터 경로, `ServerConfig.json`, 안전 종료 방식, sleep/idle 로그, 접속/퇴장 로그를 수집
-4. Windows 실기 검증 결과에 따라 안전 종료/실제 재시작 확장 여부 결정
-5. 추가 요구사항은 T10 로그 수집 후 `docs/product/DEDICATED_SERVER_OPERATION_KNOWLEDGE.md` 기준의 2차 운영 확장으로 검토
+1. 단계별 Core 분리 후 Core Keeper Adapter Windows 회귀 검증 진행
+2. Windows 검증에서 서버 실행 파일명, Game ID 출력 위치, 데이터 경로, `ServerConfig.json`, 안전 종료 방식, sleep/idle 로그, 접속/퇴장 로그를 수집
+3. Valheim Dedicated Server AppID, 실행 파일명, 포트, 데이터 경로 후보를 Windows/SteamCMD 환경에서 재검증
 
 ## 최근 작업
 
@@ -40,6 +38,22 @@
 - 2026-06-24: 운영 기본값과 기본 빈 월드/import 설계를 반영
 - 2026-06-24: `DEVELOPMENT_PLAN.md`를 T1-T10 작업 단위 기반 실행 계획으로 구체화
 - 2026-06-24: T10을 1차 Windows 실기 검증과 2차 운영 확장용 로그/증거 수집 단계로 정리
+- 2026-07-01: 제품 방향을 Steam Game Server Manager로 전환하고 Core Keeper를 첫 Adapter로 유지하는 계획을 수립
+- 2026-07-01: `DEVELOPMENT_PLAN.md` 전면 개정, `REFACTORING_PLAN.md`, `MIGRATION_STRATEGY.md` 추가
+- 2026-07-01: `.ai_project/tasks/`에 GSM-R0~GSM-R8 전환 Task 등록
+- 2026-07-02: GSM-R1 Adapter 아키텍처 문서로 `ARCHITECTURE.md`, `ADAPTER_GUIDE.md`를 추가
+- 2026-07-02: QA 지적에 따라 `DEVELOPMENT_PLAN.md`의 manifest 초안을 `ADAPTER_GUIDE.md` 계약과 일치하도록 수정
+- 2026-07-02: GSM-R2 Core Keeper Adapter manifest, manager/game example 설정, `AdapterManager.psm1`를 추가
+- 2026-07-02: GSM-R3 `ConfigManager.psm1`, `PathManager.psm1`를 추가하고 기존 Core Keeper 설정/경로 모듈을 compatibility wrapper로 전환
+- 2026-07-02: GSM-R3 QA 재작업으로 Core `PathManager.psm1`의 Core Keeper 전용 월드/config 경로 계산을 `CoreKeeper.Paths.psm1` wrapper로 이동
+- 2026-07-02: GSM-R4 `SteamCmdManager.psm1`를 추가하고 SteamCMD 설치/업데이트 명령 생성을 Adapter 설정 기반으로 전환
+- 2026-07-02: GSM-R5 `ServerManager.psm1`, `BackupManager.psm1`, `SchedulerManager.psm1`를 추가하고 start/status/backup/task 스크립트를 `-Game corekeeper` 기준으로 전환
+- 2026-07-02: GSM-R5 QA 재작업으로 `CoreKeeper.Server.psm1` wrapper에 `CoreKeeper.Paths.psm1` import를 추가하고 정적 재검증 완료
+- 2026-07-02: GSM-R6 `Games/CoreKeeper/CoreKeeper.Adapter.psm1`에 월드 import와 `ServerConfig.json` 패치 로직을 이동하고 `import-world.ps1 -Game corekeeper -WhatIf` 경로 추가
+- 2026-07-02: GSM-R7 `README.md`, `TESTING.md`, `WINDOWS_CODEX_RUNBOOK.md`를 Steam Game Server Manager 기준으로 재정렬하고 공통 Core 검증과 Core Keeper Adapter 회귀 검증을 분리
+- 2026-07-02: T-20260702-002로 루트/자동화 Agent 지침과 상위 상태 문서의 제품명 표현을 Steam Game Server Manager 기준으로 정리
+- 2026-07-02: GSM-R8 `Valheim` skeleton Adapter manifest와 example config를 추가하고 Core 수정 없이 두 번째 Adapter discovery를 정적 검증
+- 2026-07-02: GSM-R8 QA가 `PASS_WITH_RISK`로 통과했고 PM Agent가 완료 확정
 
 ## 열린 질문
 
@@ -56,6 +70,9 @@
 - `CoreKeeperServerRestart` 예약 작업 등록/해제가 정상 동작하는지?
 - 안전 종료 방식 확인 후 실제 자동 재시작 작업을 어떻게 확장할지?
 - Windows 노트북의 PowerShell 버전은 5.1인지 7.x인지?
+- 공식 제품명을 `Steam Game Server Manager`와 `Game Server Manager` 중 무엇으로 확정할지?
+- Valheim Dedicated Server의 Steam AppID, 실행 파일명, 포트, 데이터 경로 후보가 현재 Windows/SteamCMD 환경에서도 유효한지?
+- Adapter manifest schema의 필수 필드 최소 범위는 어디까지로 둘지?
 
 ## 확인된 운영 지식
 
